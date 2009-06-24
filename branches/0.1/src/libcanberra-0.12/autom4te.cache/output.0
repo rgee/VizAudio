@@ -812,6 +812,8 @@ HAVE_GSTREAMER_FALSE
 HAVE_GSTREAMER_TRUE
 HAVE_OSS_FALSE
 HAVE_OSS_TRUE
+HAVE_VIZAUDIO_FALSE
+HAVE_VIZAUDIO_TRUE
 HAVE_ALSA_FALSE
 HAVE_ALSA_TRUE
 HAVE_PULSE_FALSE
@@ -825,6 +827,7 @@ BUILTIN_DSO
 HAVE_NULL
 HAVE_GSTREAMER
 HAVE_OSS
+HAVE_VIZAUDIO
 HAVE_ALSA
 HAVE_PULSE
 HAVE_DSO
@@ -858,6 +861,8 @@ GST_LIBS
 GST_CFLAGS
 PULSE_LIBS
 PULSE_CFLAGS
+libvizaudio_LIBS
+libvizaudio_CFLAGS
 ALSA_LIBS
 ALSA_CFLAGS
 PKG_CONFIG
@@ -1002,6 +1007,7 @@ enable_largefile
 enable_rpath
 with_libiconv_prefix
 enable_alsa
+enable_libvizaudio
 enable_oss
 enable_pulse
 enable_gstreamer
@@ -1032,6 +1038,8 @@ CXXCPP
 PKG_CONFIG
 ALSA_CFLAGS
 ALSA_LIBS
+libvizaudio_CFLAGS
+libvizaudio_LIBS
 PULSE_CFLAGS
 PULSE_LIBS
 GST_CFLAGS
@@ -1682,6 +1690,7 @@ Optional Features:
   --disable-largefile     omit support for large files
   --disable-rpath         do not hardcode runtime library paths
   --disable-alsa          Disable optional ALSA support
+  --disable-libvizaudio   Disable optional (.. not) VizAudio support
   --disable-oss           Disable optional OSS support
   --disable-pulse         Disable optional PulseAudio support
   --disable-gstreamer     Disable optional GStreamer support
@@ -1723,6 +1732,10 @@ Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
   ALSA_CFLAGS C compiler flags for ALSA, overriding pkg-config
   ALSA_LIBS   linker flags for ALSA, overriding pkg-config
+  libvizaudio_CFLAGS 
+              C compiler flags for libvizaudio, overriding pkg-config
+  libvizaudio_LIBS 
+              linker flags for libvizaudio, overriding pkg-config
   PULSE_CFLAGS 
               C compiler flags for PULSE, overriding pkg-config
   PULSE_LIBS  linker flags for PULSE, overriding pkg-config
@@ -21489,6 +21502,124 @@ fi
 
 
 
+### vizaudio support (optional.. not) ###
+
+@%:@ Check whether --enable-libvizaudio was given.
+if test "${enable_libvizaudio+set}" = set; then
+  enableval=$enable_libvizaudio; 
+            case "${enableval}" in
+                yes) libvizaudio=yes ;;
+                no) libvizaudio=no ;;
+                *) { { $as_echo "$as_me:$LINENO: error: bad value ${enableval} for --disable-libvizaudio" >&5
+$as_echo "$as_me: error: bad value ${enableval} for --disable-libvizaudio" >&2;}
+   { (exit 1); exit 1; }; } ;;
+            esac
+        
+else
+  libvizaudio=auto
+fi
+
+
+if test "x${libvizaudio}" != xno ; then
+    
+pkg_failed=no
+{ $as_echo "$as_me:$LINENO: checking for libvizaudio" >&5
+$as_echo_n "checking for libvizaudio... " >&6; }
+
+if test -n "$PKG_CONFIG"; then
+    if test -n "$libvizaudio_CFLAGS"; then
+        pkg_cv_libvizaudio_CFLAGS="$libvizaudio_CFLAGS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" libvizaudio >= 1.0 \"") >&5
+  ($PKG_CONFIG --exists --print-errors " libvizaudio >= 1.0 ") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_libvizaudio_CFLAGS=`$PKG_CONFIG --cflags " libvizaudio >= 1.0 " 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+    if test -n "$libvizaudio_LIBS"; then
+        pkg_cv_libvizaudio_LIBS="$libvizaudio_LIBS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" libvizaudio >= 1.0 \"") >&5
+  ($PKG_CONFIG --exists --print-errors " libvizaudio >= 1.0 ") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_libvizaudio_LIBS=`$PKG_CONFIG --libs " libvizaudio >= 1.0 " 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        libvizaudio_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " libvizaudio >= 1.0 "`
+        else 
+	        libvizaudio_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " libvizaudio >= 1.0 "`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$libvizaudio_PKG_ERRORS" >&5
+
+	{ $as_echo "$as_me:$LINENO: result: no" >&5
+$as_echo "no" >&6; }
+                
+            HAVE_VIZAUDIO=0
+            if test "x$libvizaudio" = xyes ; then
+                { { $as_echo "$as_me:$LINENO: error: *** vizaudio not found ***" >&5
+$as_echo "$as_me: error: *** vizaudio not found ***" >&2;}
+   { (exit 1); exit 1; }; }
+            fi
+        
+elif test $pkg_failed = untried; then
+	
+            HAVE_VIZAUDIO=0
+            if test "x$libvizaudio" = xyes ; then
+                { { $as_echo "$as_me:$LINENO: error: *** vizaudio not found ***" >&5
+$as_echo "$as_me: error: *** vizaudio not found ***" >&2;}
+   { (exit 1); exit 1; }; }
+            fi
+        
+else
+	libvizaudio_CFLAGS=$pkg_cv_libvizaudio_CFLAGS
+	libvizaudio_LIBS=$pkg_cv_libvizaudio_LIBS
+        { $as_echo "$as_me:$LINENO: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+            HAVE_VIZAUDIO=1
+            
+cat >>confdefs.h <<\_ACEOF
+@%:@define HAVE_VIZAUDIO 1
+_ACEOF
+
+        
+fi
+else
+    HAVE_VIZAUDIO=0
+fi
+
+
+
+
 ### OSS support (optional) ###
 
 @%:@ Check whether --enable-oss was given.
@@ -22631,11 +22762,12 @@ $as_echo "$as_me: error: *** Unknown driver $with_builtin selected for builtin *
    { (exit 1); exit 1; }; }
 esac
 
-if test "x$HAVE_PULSE" != x1 -a "x$HAVE_ALSA" != x1 -a "x$HAVE_OSS" != x1 -a "x$HAVE_GSTREAMER" != x1 -a "x$HAVE_NULL" != x1 ; then
+if test "x$HAVE_PULSE" != x1 -a "x$HAVE_ALSA" != x1 -a "x$HAVE_OSS" != x1 -a "x$HAVE_GSTREAMER" != x1 -a "x$HAVE_NULL" != x1; then
    { { $as_echo "$as_me:$LINENO: error: *** No backend enabled. ***" >&5
 $as_echo "$as_me: error: *** No backend enabled. ***" >&2;}
    { (exit 1); exit 1; }; }
 fi
+
 
 
 
@@ -22663,6 +22795,14 @@ fi
 else
   HAVE_ALSA_TRUE='#'
   HAVE_ALSA_FALSE=
+fi
+
+ if test "x$HAVE_VIZAUDIO" = x1; then
+  HAVE_VIZAUDIO_TRUE=
+  HAVE_VIZAUDIO_FALSE='#'
+else
+  HAVE_VIZAUDIO_TRUE='#'
+  HAVE_VIZAUDIO_FALSE=
 fi
 
  if test "x$HAVE_OSS" = x1; then
@@ -23034,6 +23174,13 @@ if test -z "${HAVE_ALSA_TRUE}" && test -z "${HAVE_ALSA_FALSE}"; then
   { { $as_echo "$as_me:$LINENO: error: conditional \"HAVE_ALSA\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 $as_echo "$as_me: error: conditional \"HAVE_ALSA\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${HAVE_VIZAUDIO_TRUE}" && test -z "${HAVE_VIZAUDIO_FALSE}"; then
+  { { $as_echo "$as_me:$LINENO: error: conditional \"HAVE_VIZAUDIO\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+$as_echo "$as_me: error: conditional \"HAVE_VIZAUDIO\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -25647,6 +25794,15 @@ if test "x$BUILTIN_ALSA" = "x1" ; then
    ENABLE_BUILTIN_ALSA=yes
 fi
 
+ENABLE_VIZAUDIO=no
+if test "x$HAVE_VIZAUDIO" = "x1" ; then
+    ENABLE_VIZAUDIO=yes
+fi
+ENABLE_BUILTIN_VIZAUDIO=no
+if test "x$BUILTIN_VIZAUDIO" = "x1" ; then
+    ENABLE_BUILTIN_VIZAUDIO=yes
+fi
+
 ENABLE_OSS=no
 if test "x$HAVE_OSS" = "x1" ; then
     ENABLE_OSS=yes
@@ -25704,6 +25860,8 @@ echo "
     Builtin PulseAudio:     ${ENABLE_BUILTIN_PULSE}
     Enable ALSA:            ${ENABLE_ALSA}
     Builtin ALSA:           ${ENABLE_BUILTIN_ALSA}
+    Enable VizAudio:        ${ENABLE_VIZAUDIO}
+    Builtin VizAudio:       ${ENABLE_BUILTIN_VIZAUDIO}
     Enable OSS:             ${ENABLE_OSS}
     Builtin OSS:            ${ENABLE_BUILTIN_OSS}
     Enable GStreamer:       ${ENABLE_GSTREAMER}

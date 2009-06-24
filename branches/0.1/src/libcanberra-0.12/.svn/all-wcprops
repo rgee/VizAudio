@@ -93,17 +93,17 @@ svn:wc:ra_dav:version-url
 V 81
 /repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/ltmain.sh
 END
-libcanberra-gtk.pc.in
-K 25
-svn:wc:ra_dav:version-url
-V 93
-/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/libcanberra-gtk.pc.in
-END
 README
 K 25
 svn:wc:ra_dav:version-url
 V 78
 /repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/README
+END
+libcanberra-gtk.pc.in
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/libcanberra-gtk.pc.in
 END
 LGPL
 K 25

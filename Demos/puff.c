@@ -3,7 +3,6 @@
 #include <gdk/gdkscreen.h>
 
 
-gpointer text[7] = { "Z", "e", "t", "C", "o", "d", "e" };
 gboolean timer = TRUE;
 static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data);
 
@@ -85,6 +84,7 @@ static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer us
     else
     {
         printf("Your screen supports alpha channels!\n");
+	printf("All visual effects will be drawn without transparency.\n");
         supports_alpha = TRUE;
     }
 

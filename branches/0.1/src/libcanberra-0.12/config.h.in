@@ -132,6 +132,9 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Have vizaudio? */
+#undef HAVE_VIZAUDIO
+
 /* Define as const if the declaration of iconv() needs const. */
 #undef ICONV_CONST
 

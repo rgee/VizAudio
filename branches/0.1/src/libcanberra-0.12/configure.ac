@@ -216,26 +216,26 @@ AC_SUBST(ALSA_LIBS)
 
 ### vizaudio support (optional.. not) ###
 
-AC_ARG_ENABLE([vizaudio],
-    AS_HELP_STRING([--disable-vizaudio], [Disable optional (.. not) VizAudio support]),
+AC_ARG_ENABLE([libvizaudio],
+    AS_HELP_STRING([--disable-libvizaudio], [Disable optional (.. not) VizAudio support]),
         [
             case "${enableval}" in
-                yes) vizaudio=yes ;;
-                no) vizaudio=no ;;
-                *) AC_MSG_ERROR(bad value ${enableval} for --disable-vizaudio) ;;
+                yes) libvizaudio=yes ;;
+                no) libvizaudio=no ;;
+                *) AC_MSG_ERROR(bad value ${enableval} for --disable-libvizaudio) ;;
             esac
         ],
-        [vizaudio=auto])
+        [libvizaudio=auto])
 
-if test "x${vizaudio}" != xno ; then
-    PKG_CHECK_MODULES(vizaudio, [ vizaudio >= 1.0.0 ],
+if test "x${libvizaudio}" != xno ; then
+    PKG_CHECK_MODULES(libvizaudio, [ libvizaudio >= 1.0 ],
         [
             HAVE_VIZAUDIO=1
             AC_DEFINE([HAVE_VIZAUDIO], 1, [Have vizaudio?])
         ],
         [
             HAVE_VIZAUDIO=0
-            if test "x$vizaudio" = xyes ; then
+            if test "x$libvizaudio" = xyes ; then
                 AC_MSG_ERROR([*** vizaudio not found ***])
             fi
         ])
@@ -243,8 +243,8 @@ else
     HAVE_VIZAUDIO=0
 fi
 
-AC_SUBST(VIZAUDIO_CFLAGS)
-AC_SUBST(VIZAUDIO_LIBS)
+AC_SUBST(libvizaudio_CFLAGS)
+AC_SUBST(libvizaudio_LIBS)
 
 ### OSS support (optional) ###
 
@@ -496,7 +496,6 @@ HAVE_DSO=0
 BUILTIN_DSO=0
 BUILTIN_PULSE=0
 BUILTIN_ALSA=0
-BUILTIN_VIZAUDIO=0
 BUILTIN_OSS=0
 BUILTIN_GSTREAMER=0
 BUILTIN_NULL=0
@@ -509,7 +508,6 @@ case "x$with_builtin" in
 
         BUILTIN_PULSE=1
         HAVE_ALSA=0
-    HAVE_VIZAUDIO=0
 	HAVE_OSS=0
 	HAVE_GSTREAMER=0
         HAVE_NULL=0
@@ -522,7 +520,6 @@ case "x$with_builtin" in
 
         BUILTIN_ALSA=1
 	HAVE_OSS=0
-    HAVE_VIZAUDIO=0
         HAVE_PULSE=0
 	HAVE_GSTREAMER=0
         HAVE_NULL=0
@@ -535,7 +532,6 @@ case "x$with_builtin" in
 
         BUILTIN_GSTREAMER=1
         HAVE_ALSA=0
-    HAVE_VIZAUDIO=0
 	HAVE_OSS=0
         HAVE_PULSE=0
         HAVE_NULL=0
@@ -549,7 +545,6 @@ case "x$with_builtin" in
 	BUILTIN_OSS=1
 	HAVE_ALSA=0
 	HAVE_PULSE=0
-    HAVE_VIZAUDIO=0
 	HAVE_GSTREAMER=0
 	HAVE_NULL=0
      ;;
@@ -561,24 +556,9 @@ case "x$with_builtin" in
 
         BUILTIN_NULL=1
         HAVE_PULSE=0
-    HAVE_VIZAUDIO=0
         HAVE_ALSA=0
 	HAVE_OSS=0
 	HAVE_GSTREAMER=0
-     ;;
-
-    xvizaudio)
-        if test "x$HAVE_VIZAUDIO" != x1 ; then
-                AC_MSG_ERROR([*** VizAudio selected for builtin driver, but not enabled. ***])
-        fi
-
-        BUILTIN_VIZAUDIO=1
-	HAVE_OSS=0
-    HAVE_ALSA=0
-    HAVE_VIZAUDIO=0
-        HAVE_PULSE=0
-	HAVE_GSTREAMER=0
-        HAVE_NULL=0
      ;;
 
      xdso)
@@ -591,7 +571,7 @@ case "x$with_builtin" in
         AC_MSG_ERROR([*** Unknown driver $with_builtin selected for builtin ***])
 esac
 
-if test "x$HAVE_PULSE" != x1 -a "x$HAVE_ALSA" != x1 -a "x$HAVE_OSS" != x1 -a "x$HAVE_GSTREAMER" != x1 -a "x$HAVE_NULL" != x1 -a "x$HAVE_VIZAUDIO" != x1; then
+if test "x$HAVE_PULSE" != x1 -a "x$HAVE_ALSA" != x1 -a "x$HAVE_OSS" != x1 -a "x$HAVE_GSTREAMER" != x1 -a "x$HAVE_NULL" != x1; then
    AC_MSG_ERROR([*** No backend enabled. ***])
 fi
 
@@ -605,7 +585,6 @@ AC_SUBST(HAVE_NULL)
 AC_SUBST(BUILTIN_DSO)
 AC_SUBST(BUILTIN_PULSE)
 AC_SUBST(BUILTIN_ALSA)
-AC_SUBST(BUILTIN_VIZAUDIO)
 AC_SUBST(BUILTIN_OSS)
 AC_SUBST(BUILTIN_GSTREAMER)
 AC_SUBST(BUILTIN_NULL)

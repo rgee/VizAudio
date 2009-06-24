@@ -271,13 +271,13 @@ libcanberra_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_4) \
 	$(am__DEPENDENCIES_5) $(am__DEPENDENCIES_6)
 am__libcanberra_la_SOURCES_DIST = canberra.h common.c common.h \
-	vizaudio.c vizaudio.h mutex-posix.c mutex.h proplist.c \
-	proplist.h driver.h read-sound-file.c read-sound-file.h \
-	read-vorbis.c read-vorbis.h read-wav.c read-wav.h \
-	sound-theme-spec.c sound-theme-spec.h llist.h macro.h macro.c \
-	malloc.c malloc.h fork-detect.c fork-detect.h cache.c cache.h \
-	dso.c driver-order.c driver-order.h pulse.c alsa.c oss.c \
-	gstreamer.c null.c
+	mutex-posix.c mutex.h proplist.c proplist.h driver.h \
+	read-sound-file.c read-sound-file.h read-vorbis.c \
+	read-vorbis.h read-wav.c read-wav.h sound-theme-spec.c \
+	sound-theme-spec.h llist.h macro.h macro.c malloc.c malloc.h \
+	fork-detect.c fork-detect.h cache.c cache.h dso.c \
+	driver-order.c driver-order.h pulse.c alsa.c oss.c gstreamer.c \
+	null.c
 @HAVE_CACHE_TRUE@am__objects_1 = libcanberra_la-cache.lo
 @BUILTIN_DSO_TRUE@am__objects_2 = libcanberra_la-dso.lo \
 @BUILTIN_DSO_TRUE@	libcanberra_la-driver-order.lo
@@ -291,8 +291,8 @@ am__libcanberra_la_SOURCES_DIST = canberra.h common.c common.h \
 @BUILTIN_NULL_TRUE@@HAVE_NULL_TRUE@am__objects_7 =  \
 @BUILTIN_NULL_TRUE@@HAVE_NULL_TRUE@	libcanberra_la-null.lo
 am_libcanberra_la_OBJECTS = libcanberra_la-common.lo \
-	libcanberra_la-vizaudio.lo libcanberra_la-mutex-posix.lo \
-	libcanberra_la-proplist.lo libcanberra_la-read-sound-file.lo \
+	libcanberra_la-mutex-posix.lo libcanberra_la-proplist.lo \
+	libcanberra_la-read-sound-file.lo \
 	libcanberra_la-read-vorbis.lo libcanberra_la-read-wav.lo \
 	libcanberra_la-sound-theme-spec.lo libcanberra_la-macro.lo \
 	libcanberra_la-malloc.lo libcanberra_la-fork-detect.lo \
@@ -416,6 +416,7 @@ HAVE_NULL = @HAVE_NULL@
 HAVE_OSS = @HAVE_OSS@
 HAVE_PULSE = @HAVE_PULSE@
 HAVE_TDB = @HAVE_TDB@
+HAVE_VIZAUDIO = @HAVE_VIZAUDIO@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -504,6 +505,8 @@ infodir = @infodir@
 install_sh = @install_sh@
 libdir = @libdir@
 libexecdir = @libexecdir@
+libvizaudio_CFLAGS = @libvizaudio_CFLAGS@
+libvizaudio_LIBS = @libvizaudio_LIBS@
 localedir = @localedir@
 localstatedir = @localstatedir@
 lt_ECHO = @lt_ECHO@
@@ -532,20 +535,20 @@ AM_LDADD = $(PTHREAD_LIBS)
 EXTRA_DIST = map-file $(am__append_26)
 lib_LTLIBRARIES = libcanberra.la $(am__append_24)
 include_HEADERS = canberra.h $(am__append_25)
-libcanberra_la_SOURCES = canberra.h common.c common.h vizaudio.c \
-	vizaudio.h mutex-posix.c mutex.h proplist.c proplist.h \
-	driver.h read-sound-file.c read-sound-file.h read-vorbis.c \
-	read-vorbis.h read-wav.c read-wav.h sound-theme-spec.c \
-	sound-theme-spec.h llist.h macro.h macro.c malloc.c malloc.h \
-	fork-detect.c fork-detect.h $(am__append_2) $(am__append_5) \
-	$(am__append_8) $(am__append_12) $(am__append_16) \
-	$(am__append_18) $(am__append_22)
-libcanberra_la_CFLAGS = $(AM_CFLAGS) $(VORBIS_CFLAGS) $(GTK_CFLAGS) \
-	$(am__append_3) $(am__append_9) $(am__append_13) \
-	$(am__append_19)
-libcanberra_la_LIBADD = $(VORBIS_LIBS) $(GTK_LIBS) $(am__append_4) \
-	$(am__append_6) $(am__append_10) $(am__append_14) \
-	$(am__append_20)
+libcanberra_la_SOURCES = canberra.h common.c common.h mutex-posix.c \
+	mutex.h proplist.c proplist.h driver.h read-sound-file.c \
+	read-sound-file.h read-vorbis.c read-vorbis.h read-wav.c \
+	read-wav.h sound-theme-spec.c sound-theme-spec.h llist.h \
+	macro.h macro.c malloc.c malloc.h fork-detect.c fork-detect.h \
+	$(am__append_2) $(am__append_5) $(am__append_8) \
+	$(am__append_12) $(am__append_16) $(am__append_18) \
+	$(am__append_22)
+libcanberra_la_CFLAGS = $(AM_CFLAGS) $(VORBIS_CFLAGS) \
+	$(libvizaudio_CFLAGS) $(am__append_3) $(am__append_9) \
+	$(am__append_13) $(am__append_19)
+libcanberra_la_LIBADD = $(VORBIS_LIBS) $(libvizaudio_LIBS) \
+	$(am__append_4) $(am__append_6) $(am__append_10) \
+	$(am__append_14) $(am__append_20)
 libcanberra_la_LDFLAGS = -export-dynamic -version-info \
 	$(LIBCANBERRA_VERSION_INFO) $(am__append_1)
 plugin_LTLIBRARIES = $(am__append_7) $(am__append_11) $(am__append_15) \
@@ -945,7 +948,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_la-read-vorbis.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_la-read-wav.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_la-sound-theme-spec.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_la-vizaudio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_multi_la-multi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_null_la-null.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libcanberra_oss_la-oss.Plo@am__quote@
@@ -1035,13 +1037,6 @@ libcanberra_la-common.lo: common.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='common.c' object='libcanberra_la-common.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -c -o libcanberra_la-common.lo `test -f 'common.c' || echo '$(srcdir)/'`common.c
-
-libcanberra_la-vizaudio.lo: vizaudio.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -MT libcanberra_la-vizaudio.lo -MD -MP -MF $(DEPDIR)/libcanberra_la-vizaudio.Tpo -c -o libcanberra_la-vizaudio.lo `test -f 'vizaudio.c' || echo '$(srcdir)/'`vizaudio.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libcanberra_la-vizaudio.Tpo $(DEPDIR)/libcanberra_la-vizaudio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='vizaudio.c' object='libcanberra_la-vizaudio.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -c -o libcanberra_la-vizaudio.lo `test -f 'vizaudio.c' || echo '$(srcdir)/'`vizaudio.c
 
 libcanberra_la-mutex-posix.lo: mutex-posix.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -MT libcanberra_la-mutex-posix.lo -MD -MP -MF $(DEPDIR)/libcanberra_la-mutex-posix.Tpo -c -o libcanberra_la-mutex-posix.lo `test -f 'mutex-posix.c' || echo '$(srcdir)/'`mutex-posix.c

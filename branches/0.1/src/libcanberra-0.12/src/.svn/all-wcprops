@@ -177,17 +177,17 @@ svn:wc:ra_dav:version-url
 V 83
 /repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/llist.h
 END
-canberra-gtk.c
-K 25
-svn:wc:ra_dav:version-url
-V 90
-/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/canberra-gtk.c
-END
 driver.h
 K 25
 svn:wc:ra_dav:version-url
 V 84
 /repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/driver.h
+END
+canberra-gtk.c
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/canberra-gtk.c
 END
 cache.c
 K 25

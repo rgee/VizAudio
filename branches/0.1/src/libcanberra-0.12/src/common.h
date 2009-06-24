@@ -24,8 +24,6 @@
 #include "canberra.h"
 #include "macro.h"
 #include "mutex.h"
-#include "vizaudio.h"
-//#include "gtk/gtk.h"
 
 struct ca_context {
     ca_bool_t opened;

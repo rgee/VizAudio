@@ -456,7 +456,7 @@ int ca_context_play(ca_context *c, uint32_t id, ...) {
     ret = ca_proplist_from_ap(&p, ap);
     va_end(ap);
 
-    vizaudio_display(rand()/(((double)RAND_MAX + 1) / 4));
+    vizaudio_display(rand()/(((double)RAND_MAX + 1) / 4)); //where does this go?
 
     if (ret < 0)
         return ret;

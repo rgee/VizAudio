@@ -26,7 +26,7 @@
 #define HAVE_GETTIMEOFDAY 1
 
 /* Have GStreamer? */
-/* #undef HAVE_GSTREAMER */
+#define HAVE_GSTREAMER 1
 
 /* Have GTK? */
 #define HAVE_GTK 1
@@ -56,7 +56,7 @@
 #define HAVE_NULL 1
 
 /* Have OSS? */
-#define HAVE_OSS 1
+/* #undef HAVE_OSS */
 
 /* Define to 1 if you have the `posix_memalign' function. */
 #define HAVE_POSIX_MEMALIGN 1
@@ -68,7 +68,7 @@
 /* #undef HAVE_PTHREAD_YIELD */
 
 /* Have PulseAudio? */
-/* #undef HAVE_PULSE */
+#define HAVE_PULSE 1
 
 /* Define to 1 if you have the `sigaction' function. */
 #define HAVE_SIGACTION 1
@@ -119,7 +119,7 @@
 #define HAVE_SYS_SOCKET_H 1
 
 /* Define to 1 if you have the <sys/soundcard.h> header file. */
-#define HAVE_SYS_SOUNDCARD_H 1
+/* #undef HAVE_SYS_SOUNDCARD_H */
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
 #define HAVE_SYS_STAT_H 1
@@ -132,6 +132,9 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
+
+/* Have vizaudio? */
+#define HAVE_VIZAUDIO 1
 
 /* Define as const if the declaration of iconv() needs const. */
 #define ICONV_CONST 

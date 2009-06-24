@@ -57,12 +57,10 @@ libcanberra_la_SOURCES = \
 libcanberra_la_CFLAGS = \
 	$(AM_CFLAGS) \
  	$(VORBIS_CFLAGS) \
-	$(GTK_CFLAGS) \
-    $(VIZAUDIO_CFLAGS)
+    $(libvizaudio_CFLAGS)
 libcanberra_la_LIBADD = \
 	$(VORBIS_LIBS) \
-	$(GTK_LIBS) \
-    $(VIZAUDIO_LIBS)
+    $(libvizaudio_LIBS)
 libcanberra_la_LDFLAGS = \
 	-export-dynamic \
 	-version-info $(LIBCANBERRA_VERSION_INFO)
@@ -272,6 +270,7 @@ libcanberra_null_la_LDFLAGS = \
 	-avoid-version -module -export-dynamic
 endif
 endif
+
 
 if HAVE_GTK
 
