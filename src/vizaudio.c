@@ -1,21 +1,26 @@
+/* This is the main source file for VizAudio. Audio function calls will pass through 
+ *  vizaudio_display, carrying the same information as is passed ca_context_play in
+ *  libCanberra. This will allow us to select the proper visual effect based on the 
+ *  libCanberra property list. (Proplist parsing not implemented ATM)
+ */
+
+
+
 #include <vizaudio.h>
 
 
 /* Global Variables */
 gboolean timer = TRUE;
 
-void vizaudio_display(int id, char[] label) {
-	
+void vizaudio_display(int id) {
+    
     GtkWidget *window;
-	
+    
+    /* This switch case is simply to create random effects for debugging.
+     *  Production code will infer the effect from the sound information.
+     */
     switch(id) {
-        case 4:;        
-            window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-            gtk_widget_show  (window);
-
-            break;
-
-        case 2:;
+        case 1:;
             window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
             gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
@@ -28,11 +33,11 @@ void vizaudio_display(int id, char[] label) {
             gtk_widget_show(window);        
             
             /* This function takes the function endFlash and calls it with a time
-	     * interval defined by the first parameter */
+             * interval defined by the first parameter */
             g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
             break;
 
-        case 3:;
+        case 2:;
             window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
             gtk_window_fullscreen(GTK_WINDOW(window));
@@ -44,13 +49,13 @@ void vizaudio_display(int id, char[] label) {
             
             gtk_widget_show(window);
             
-		/* This function takes the function endFlash and calls it with a time
-	     * interval defined by the first parameter 
-		 */
+        /* This function takes the function endFlash and calls it with a time
+         * interval defined by the first parameter 
+         */
             g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
             break;
             
-        case 1:;
+        case 3:;
             window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
             gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
@@ -58,14 +63,14 @@ void vizaudio_display(int id, char[] label) {
 
             
             /* Link the callbacks */
-			g_signal_connect(G_OBJECT(window), "delete-event", gtk_main_quit, NULL);
-            g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), label);
+            g_signal_connect(G_OBJECT(window), "delete-event", gtk_main_quit, NULL);
+            g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), NULL);
             g_signal_connect(G_OBJECT(window), "screen-changed", G_CALLBACK(screen_changed), NULL);
             
             gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
             
             screen_changed(window, NULL, NULL);
-			
+            
             g_timeout_add(14, (GSourceFunc) time_handler, (gpointer) window);
             gtk_widget_show(window);
             break;
@@ -97,7 +102,7 @@ static gboolean time_handler (GtkWidget *widget){
 
   if (!timer) return FALSE;
 
-	// Send expose events
+    // Send expose events
   gtk_widget_queue_draw(widget);
 
   return TRUE;
