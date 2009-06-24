@@ -4,8 +4,10 @@
 /* Global Variables */
 gboolean timer = TRUE;
 
-void vizaudio_display(int id) {
+void vizaudio_display(int id, char[] label) {
+	
     GtkWidget *window;
+	
     switch(id) {
         case 4:;        
             window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
@@ -25,9 +27,8 @@ void vizaudio_display(int id) {
             gtk_widget_show(image);    
             gtk_widget_show(window);        
             
-            /* This function takes the function endFlash and calls it every
-             * 1 second. When endFlash returns false, this loop ends.
-             * This serves to make the screen flash last only one second. */
+            /* This function takes the function endFlash and calls it with a time
+	     * interval defined by the first parameter */
             g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
             break;
 
@@ -35,18 +36,17 @@ void vizaudio_display(int id) {
             window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
             gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
             gtk_window_fullscreen(GTK_WINDOW(window));
-            
-            /* Modify the color of the window */
-            GdkColor color2;
-            gdk_color_parse("light blue", &color2);
-            gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color2);
+
+            GdkColor color;
+            gdk_color_parse("light blue", &color);
+            gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color);
             
             
             gtk_widget_show(window);
             
-            /* This function takes the function endFlash and calls it every
-             * 1 second. When endFlash returns false, this loop ends.
-             * This serves to make the screen flash last only one second. */
+		/* This function takes the function endFlash and calls it with a time
+	     * interval defined by the first parameter 
+		 */
             g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
             break;
             
@@ -55,24 +55,23 @@ void vizaudio_display(int id) {
             gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
             gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
             gtk_widget_set_app_paintable(window, TRUE);
-            g_signal_connect(G_OBJECT(window), "delete-event", gtk_main_quit, NULL);
+
             
             /* Link the callbacks */
-            g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), NULL);
+			g_signal_connect(G_OBJECT(window), "delete-event", gtk_main_quit, NULL);
+            g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), label);
             g_signal_connect(G_OBJECT(window), "screen-changed", G_CALLBACK(screen_changed), NULL);
             
             gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
             
-            //gboolean supports_alpha = FALSE;
-            
             screen_changed(window, NULL, NULL);
+			
             g_timeout_add(14, (GSourceFunc) time_handler, (gpointer) window);
             gtk_widget_show(window);
             break;
 
         default:
             printf("Flashing the screen\n");
-            //display_flash();
             break;
     }
 }
@@ -82,38 +81,31 @@ static gboolean endFlash(GtkWidget *window){
     return FALSE;
 }
 
+/* Callback function for whenever the GdkScreen becomes the active screen
+ * for the passed widget 
+ */
 static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data){
     /* To check if the display supports alpha channels, get the colormap */
     GdkScreen *screen = gtk_widget_get_screen(widget);
     GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
     
-    /*if (!colormap)
-    {
-        printf("Your screen doesn't support alpha channels. Refer to the README for instructions\n");
-        
-        colormap = gdk_screen_get_rgb_colormap(screen);
-        supports_alpha = FALSE;
-    }
-    else
-    {
-        supports_alpha = TRUE;
-    }*/
-    
     gtk_widget_set_colormap(widget, colormap);
 }
 
-static gboolean
-time_handler (GtkWidget *widget)
-{
+static gboolean time_handler (GtkWidget *widget){
   if (widget->window == NULL) return FALSE;
 
   if (!timer) return FALSE;
 
+	// Send expose events
   gtk_widget_queue_draw(widget);
 
   return TRUE;
 }
 
+/* This function displays text flying toward the screen, growing as it moves.
+ *
+ */
 static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data){
     cairo_t *cr;
     cairo_text_extents_t extents;
