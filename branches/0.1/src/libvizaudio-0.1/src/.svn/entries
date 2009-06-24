@@ -1,0 +1,69 @@
+8
+
+dir
+632
+http://storage1.cs.trincoll.edu/repo_summer_09/VizAudio/branches/0.1/src/libvizaudio-0.1/src
+http://storage1.cs.trincoll.edu/repo_summer_09
+
+
+
+2009-06-22T21:04:32.685600Z
+631
+gen_coms12
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+293d3bf5-51dd-4731-92c6-e8c87a8f0962
+
+vizaudio.h
+file
+
+
+
+
+2009-06-23T13:08:55.000000Z
+46a87520f30911c66b17243a0a8fc892
+2009-06-22T21:04:32.685600Z
+631
+gen_coms12
+has-props
+
+gtk
+dir
+
+Makefile.am
+file
+
+
+
+
+2009-06-23T13:08:55.000000Z
+766e0cb7c0044cf2a50b37fc733220c9
+2009-06-22T15:51:28.353463Z
+615
+gen_coms12
+
+vizaudio.c
+file
+
+
+
+
+2009-06-23T13:08:55.000000Z
+cdab2a8d3c6a8342a7078e977c75f83b
+2009-06-22T21:04:32.685600Z
+631
+gen_coms12
+has-props
+

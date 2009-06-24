@@ -1,0 +1,179 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repo_summer_09/!svn/ver/562/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps
+END
+libcanberra_la-null.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-null.Plo
+END
+libcanberra_la-proplist.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-proplist.Plo
+END
+libcanberra_la-read-vorbis.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-read-vorbis.Plo
+END
+libcanberra_la-read-sound-file.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-read-sound-file.Plo
+END
+canberra_gtk_play-canberra-gtk-play.Po
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repo_summer_09/!svn/ver/562/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/canberra_gtk_play-canberra-gtk-play.Po
+END
+libcanberra_la-sound-theme-spec.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-sound-theme-spec.Plo
+END
+libcanberra_alsa_la-alsa.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_alsa_la-alsa.Plo
+END
+libcanberra_la-alsa.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-alsa.Plo
+END
+libcanberra_la-dso.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-dso.Plo
+END
+libcanberra_oss_la-oss.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_oss_la-oss.Plo
+END
+libcanberra_la-pulse.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-pulse.Plo
+END
+libcanberra_la-common.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repo_summer_09/!svn/ver/562/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-common.Plo
+END
+libcanberra_la-gstreamer.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-gstreamer.Plo
+END
+libcanberra_la-vizaudio.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repo_summer_09/!svn/ver/562/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-vizaudio.Plo
+END
+libcanberra_gtk_module_la-canberra-gtk-module.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repo_summer_09/!svn/ver/562/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_gtk_module_la-canberra-gtk-module.Plo
+END
+libcanberra_pulse_la-pulse.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_pulse_la-pulse.Plo
+END
+test-canberra.Po
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/test-canberra.Po
+END
+libcanberra_la-macro.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-macro.Plo
+END
+libcanberra_la-mutex-posix.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-mutex-posix.Plo
+END
+libcanberra_gstreamer_la-gstreamer.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_gstreamer_la-gstreamer.Plo
+END
+libcanberra_la-cache.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-cache.Plo
+END
+libcanberra_la-driver-order.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-driver-order.Plo
+END
+libcanberra_la-oss.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-oss.Plo
+END
+libcanberra_multi_la-multi.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_multi_la-multi.Plo
+END
+libcanberra_null_la-null.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_null_la-null.Plo
+END
+libcanberra_gtk_la-canberra-gtk.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repo_summer_09/!svn/ver/562/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_gtk_la-canberra-gtk.Plo
+END
+libcanberra_la-read-wav.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-read-wav.Plo
+END
+libcanberra_la-malloc.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-malloc.Plo
+END
+libcanberra_la-fork-detect.Plo
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repo_summer_09/!svn/ver/552/VizAudio/branches/0.1/src/libcanberra-0.12/src/.deps/libcanberra_la-fork-detect.Plo
+END
