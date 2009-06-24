@@ -1,5 +1,6 @@
 #include "vizaudio.h"
 
+/* main() is a main method. */
 int main( int   argc,
           char *argv[] )
 {
