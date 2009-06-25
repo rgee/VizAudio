@@ -2,7 +2,7 @@
 #include <gdk/gdkscreen.h>
 #include <cairo.h>
 
-void vizaudio_display(int id, char[] label = NULL);
+void vizaudio_display(int id);
 
 static gboolean endFlash(GtkWidget *window);
 

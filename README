@@ -1,5 +1,5 @@
             #             libvizaudio 0.1              #
-            ########################
+            ############################################
 
 Overview:
      libVizAudio is a GTK-based system that links audio events to visual events. It is primarily
