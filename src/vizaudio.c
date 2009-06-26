@@ -60,6 +60,7 @@ void vizaudio_display(int id) {
             gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
             gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
             gtk_widget_set_app_paintable(window, TRUE);
+	    gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
 
             
             /* Link the callbacks */
