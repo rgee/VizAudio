@@ -73,7 +73,7 @@ void vizaudio_display(int id) {
             
             g_timeout_add(14, (GSourceFunc) time_handler, (gpointer) window);
             gtk_widget_show(window);
-	    gtk_object_destroy(GTK_OBJECT(widget));
+	        gtk_object_destroy(GTK_OBJECT(window));
             break;
 
         default:
