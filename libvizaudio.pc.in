@@ -9,7 +9,7 @@ Description: This library works with libcanberra to link visual effects to sound
 URL: seaslug.org
 Version: @VERSION@
 Libs: -L${libdir} -lvizaudio
-Cflags:-D_REENTRANT -I${includedir}
-Requires: gtk+-2.0
+Cflags: -I${includedir}
+Requires: gtk+-2.0 libcairo2 gdk
 \-------------------------------------------------------
 
