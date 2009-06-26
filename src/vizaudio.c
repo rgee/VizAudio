@@ -73,6 +73,7 @@ void vizaudio_display(int id) {
             
             g_timeout_add(14, (GSourceFunc) time_handler, (gpointer) window);
             gtk_widget_show(window);
+	    gtk_object_destroy(GTK_OBJECT(widget));
             break;
 
         default:
@@ -95,8 +96,6 @@ static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer us
     GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
     
     gtk_widget_set_colormap(widget, colormap);
-
-    gtk_object_destroy(GTK_OBJECT(widget));
 }
 
 static gboolean time_handler (GtkWidget *widget){
