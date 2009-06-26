@@ -63,7 +63,7 @@ void vizaudio_display(int id) {
 
             
             /* Link the callbacks */
-            g_signal_connect(G_OBJECT(window), "delete-event", gtk_main_quit, NULL);
+            g_signal_connect(G_OBJECT(window), "destroy", gtk_main_quit, NULL);
             g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), NULL);
             g_signal_connect(G_OBJECT(window), "screen-changed", G_CALLBACK(screen_changed), NULL);
             

@@ -847,8 +847,6 @@ HAVE_GTK_FALSE
 HAVE_GTK_TRUE
 HAVE_GTK
 GTK_MODULES_DIR
-GCONF_SCHEMA_FILE_DIR
-GCONF_SCHEMA_CONFIG_SOURCE
 GCONFTOOL
 GTK_LIBS
 GTK_CFLAGS
@@ -1008,9 +1006,6 @@ enable_pulse
 enable_gstreamer
 enable_null
 enable_gtk
-with_gconf_source
-with_gconf_schema_file_dir
-enable_schemas_install
 enable_tdb
 enable_lynx
 with_builtin
@@ -1690,7 +1685,6 @@ Optional Features:
   --disable-gstreamer     Disable optional GStreamer support
   --disable-null          Disable optional null output
   --disable-gtk           Disable optional GTK+ support
-  --disable-schemas-install	Disable the schemas installation
   --disable-tdb           Disable optional tdb support
   --disable-lynx          Turn off lynx usage for documentation generation
   --enable-gtk-doc        use gtk-doc to build documentation [default=no]
@@ -1701,10 +1695,6 @@ Optional Packages:
   --with-pic              try to use only PIC/non-PIC objects @<:@default=use
                           both@:>@
   --with-gnu-ld           assume the C compiler uses GNU ld @<:@default=no@:>@
-  --with-gconf-source=sourceaddress 
-                          Config database for installing schema files.
-  --with-gconf-schema-file-dir=dir 
-                          Directory for installing schema files.
   --with-builtin          Choose builtin driver
   --with-html-dir=PATH    path to installed docs
 
@@ -21240,58 +21230,7 @@ $as_echo "no" >&6; }
 fi
 
 
-	    
-  if test "x$GCONF_SCHEMA_INSTALL_SOURCE" = "x"; then
-    GCONF_SCHEMA_CONFIG_SOURCE=`gconftool-2 --get-default-source`
-  else
-    GCONF_SCHEMA_CONFIG_SOURCE=$GCONF_SCHEMA_INSTALL_SOURCE
-  fi
-
-  
-@%:@ Check whether --with-gconf-source was given.
-if test "${with_gconf_source+set}" = set; then
-  withval=$with_gconf_source; GCONF_SCHEMA_CONFIG_SOURCE="$withval"
-fi
-
-
-  
-  { $as_echo "$as_me:$LINENO: result: Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation" >&5
-$as_echo "Using config source $GCONF_SCHEMA_CONFIG_SOURCE for schema installation" >&6; }
-
-  if test "x$GCONF_SCHEMA_FILE_DIR" = "x"; then
-    GCONF_SCHEMA_FILE_DIR='$(sysconfdir)/gconf/schemas'
-  fi
-
-  
-@%:@ Check whether --with-gconf-schema-file-dir was given.
-if test "${with_gconf_schema_file_dir+set}" = set; then
-  withval=$with_gconf_schema_file_dir; GCONF_SCHEMA_FILE_DIR="$withval"
-fi
-
-
-  
-  { $as_echo "$as_me:$LINENO: result: Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files" >&5
-$as_echo "Using $GCONF_SCHEMA_FILE_DIR as install directory for schema files" >&6; }
-
-  @%:@ Check whether --enable-schemas-install was given.
-if test "${enable_schemas_install+set}" = set; then
-  enableval=$enable_schemas_install; case ${enableval} in
-       yes|no) ;;
-       *) { { $as_echo "$as_me:$LINENO: error: bad value ${enableval} for --enable-schemas-install" >&5
-$as_echo "$as_me: error: bad value ${enableval} for --enable-schemas-install" >&2;}
-   { (exit 1); exit 1; }; } ;;
-      esac
-fi
-
-   if test "$enable_schemas_install" != no; then
-  GCONF_SCHEMAS_INSTALL_TRUE=
-  GCONF_SCHEMAS_INSTALL_FALSE='#'
-else
-  GCONF_SCHEMAS_INSTALL_TRUE='#'
-  GCONF_SCHEMAS_INSTALL_FALSE=
-fi
-
-
+	    AM_GCONF_SOURCE_2
 
             GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
             GTK_MODULES_DIR="${libdir}/gtk-2.0/modules"
@@ -22123,13 +22062,6 @@ Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
 
-if test -z "${GCONF_SCHEMAS_INSTALL_TRUE}" && test -z "${GCONF_SCHEMAS_INSTALL_FALSE}"; then
-  { { $as_echo "$as_me:$LINENO: error: conditional \"GCONF_SCHEMAS_INSTALL\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-$as_echo "$as_me: error: conditional \"GCONF_SCHEMAS_INSTALL\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
 if test -z "${GCONF_SCHEMAS_INSTALL_TRUE}" && test -z "${GCONF_SCHEMAS_INSTALL_FALSE}"; then
   { { $as_echo "$as_me:$LINENO: error: conditional \"GCONF_SCHEMAS_INSTALL\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
