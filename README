@@ -1,0 +1,47 @@
+            #             libvizaudio 0.1              #
+            ############################################
+
+Overview:
+     libVizAudio is a GTK-based system that links audio events to visual events. It is primarily
+    meant as an accessibility tool for deaf users. VizAudio takes advantage of the 
+    enhanced sound information provided by applications that use the audio framework
+    libCanberra. For the sake of generalizability and extensibility, libVizAudio is not 
+    directly a  part of libCanberra. It is a tool that operates in parallel with libCanberra
+    to enhance the user experience. libVizAudio functions by constantly listening for
+    libCanberra sound playing calls on the D-BUS. When a sound method call is heard,
+    vizAudio uses the information given to libCanberra in that call to determine the
+    relevant sound-event to play. If none is found for this audio event, Users will be
+    given the option to assign a pre-made visual event to play whenever this audio
+    event is played. These visual events make use of basic GTK drawing and more
+    advanced Cairo vector graphics.
+
+Authors:
+    Ted Nichols
+    Rachel Foecking
+    Ryan Gee
+
+Current Status:
+    The current status of VizAudio is: DEVELOPMENT
+        This build is still in testing and should not be treated as production code.
+
+Dependencies:
+    [*] GTK+ - For basic visual effects
+    [*] GLib - For the DBUS daemon
+    [*] Cairo - For advanced vector graphics
+    [*] LibCanberra - To recieve information about audio events
+    
+    *Note: These libraries may mandate a multitude of other dependencies. Please
+    consult their respective reference manuals for more information.
+
+Installation:
+    This package was created using GNOME Autotools. Thus, you should execute
+    the following commands in a terminal to complete installation:
+    
+        $ ./configure
+        $ make
+        $ make install ($ sudo make install if necessary)
+        
+Acknowledgements:
+    Bryen Yunashko and Rohan Anil - Project mentors
+    
+    HFOSS Project
