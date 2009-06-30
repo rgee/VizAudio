@@ -10,6 +10,6 @@ URL: seaslug.org
 Version: @VERSION@
 Libs: -L${libdir} -lvizaudio
 Cflags: -I${includedir}
-Requires: gtk+-2.0 libcairo2 gdk
+Requires: gtk+-2.0
 \-------------------------------------------------------
 
