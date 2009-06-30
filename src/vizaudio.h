@@ -2,11 +2,14 @@
 #include <gdk/gdkscreen.h>
 #include <cairo.h>
 
-void vizaudio_display(int id);
+void flash_color();
+void flash_image(char* filename);
+void flash_text(char* text);
+void print_text();
 
 static gboolean endFlash(GtkWidget *window);
 
 static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data);
 static gboolean expose(GtkWidget *widget, GdkEventExpose *event, gpointer user_data);
 static gboolean time_handler (GtkWidget *widget);
-static gboolean textDisplay (GtkWidget *widget, GdkEventExpose *event, gpointer user_data);
+static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data);
