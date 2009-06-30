@@ -157,4 +157,3 @@ static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer u
     gtk_object_destroy(GTK_OBJECT(widget));
     return FALSE;
 }
-
