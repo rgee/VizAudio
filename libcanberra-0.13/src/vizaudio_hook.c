@@ -1,5 +1,4 @@
 #include "canberra.h"
-#include "proplist.h"
 #include "vizaudio_hook.h"
 #include "vizaudio.h"
 
@@ -11,8 +10,8 @@ void vizaudio_display(ca_proplist *data) {
 
     char *out;
 
-    out = (char*) ca_proplist_gets_unlocked(data, CA_PROP_EVENT_ID);
+    //out = (char*) ca_proplist_gets_unlocked(data, CA_PROP_EVENT_ID);
 
-    flash_text("ID: %s", out);
+    flash_text(out);
 
 }
