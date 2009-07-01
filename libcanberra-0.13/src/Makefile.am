@@ -57,9 +57,11 @@ libcanberra_la_SOURCES = \
     vizaudio_hook.c vizaudio_hook.h
 libcanberra_la_CFLAGS = \
 	$(AM_CFLAGS) \
-	$(VORBIS_CFLAGS) 
+	$(VORBIS_CFLAGS) \
+    $(libvizaudio_CFLAGS)
 libcanberra_la_LIBADD = \
-	$(VORBIS_LIBS) 
+	$(VORBIS_LIBS) \ 
+    $(libvizaudio_LIBS)
 libcanberra_la_LDFLAGS = \
 	-export-dynamic \
 	-version-info $(LIBCANBERRA_VERSION_INFO)
