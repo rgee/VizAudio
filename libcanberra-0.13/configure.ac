@@ -214,37 +214,6 @@ fi
 AC_SUBST(ALSA_CFLAGS)
 AC_SUBST(ALSA_LIBS)
 
-### vizaudio support (optional.. not) ###
-
-AC_ARG_ENABLE([libvizaudio],
-    AS_HELP_STRING([--disable-libvizaudio], [Disable optional (.. not) VizAudio support]),
-        [
-            case "${enableval}" in
-                yes) libvizaudio=yes ;;
-                no) libvizaudio=no ;;
-                *) AC_MSG_ERROR(bad value ${enableval} for --disable-libvizaudio) ;;
-            esac
-        ],
-        [libvizaudio=auto])
-
-if test "x${libvizaudio}" != xno ; then
-    PKG_CHECK_MODULES(libvizaudio, [ libvizaudio >= 1.0 ],
-        [
-            HAVE_VIZAUDIO=1
-            AC_DEFINE([HAVE_VIZAUDIO], 1, [Have vizaudio?])
-        ],
-        [
-            HAVE_VIZAUDIO=0
-            if test "x$libvizaudio" = xyes ; then
-                AC_MSG_ERROR([*** vizaudio not found ***])
-            fi
-        ])
-else
-    HAVE_VIZAUDIO=0
-fi
-
-AC_SUBST(libvizaudio_CFLAGS)
-AC_SUBST(libvizaudio_LIBS)
 
 ### OSS support (optional) ###
 
@@ -645,15 +614,6 @@ if test "x$BUILTIN_ALSA" = "x1" ; then
    ENABLE_BUILTIN_ALSA=yes
 fi
 
-ENABLE_VIZAUDIO=no
-if test "x$HAVE_VIZAUDIO" = "x1" ; then
-    ENABLE_VIZAUDIO=yes
-fi
-ENABLE_BUILTIN_VIZAUDIO=no
-if test "x$BUILTIN_VIZAUDIO" = "x1" ; then
-    ENABLE_BUILTIN_VIZAUDIO=yes
-fi
-
 ENABLE_OSS=no
 if test "x$HAVE_OSS" = "x1" ; then
     ENABLE_OSS=yes
@@ -711,8 +671,6 @@ echo "
     Builtin PulseAudio:     ${ENABLE_BUILTIN_PULSE}
     Enable ALSA:            ${ENABLE_ALSA}
     Builtin ALSA:           ${ENABLE_BUILTIN_ALSA}
-    Enable VizAudio:        ${ENABLE_VIZAUDIO}
-    Builtin VizAudio:       ${ENABLE_BUILTIN_VIZAUDIO}
     Enable OSS:             ${ENABLE_OSS}
     Builtin OSS:            ${ENABLE_BUILTIN_OSS}
     Enable GStreamer:       ${ENABLE_GSTREAMER}

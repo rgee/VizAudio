@@ -53,14 +53,13 @@ libcanberra_la_SOURCES = \
 	llist.h \
 	macro.h macro.c \
 	malloc.c malloc.h \
-	fork-detect.c fork-detect.h
+	fork-detect.c fork-detect.h \
+    vizaudio_hook.c vizaudio_hook.h
 libcanberra_la_CFLAGS = \
 	$(AM_CFLAGS) \
-	$(VORBIS_CFLAGS) \
-    $(libvizaudio_CFLAGS)
+	$(VORBIS_CFLAGS) 
 libcanberra_la_LIBADD = \
-	$(VORBIS_LIBS) \
-    $(libvizaudio_LIBS)
+	$(VORBIS_LIBS) 
 libcanberra_la_LDFLAGS = \
 	-export-dynamic \
 	-version-info $(LIBCANBERRA_VERSION_INFO)
