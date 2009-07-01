@@ -62,6 +62,9 @@ void flash_text(char* text) {
     gtk_widget_set_app_paintable(window, TRUE);
     gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
     
+    printf("flash_text: %s\n", text);
+    //printf("as pointer: %s\n", (gpointer)(text));
+
     /* Link the callbacks */
     g_signal_connect(G_OBJECT(window), "destroy", gtk_main_quit, NULL);
     g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), (gpointer)(text));
@@ -71,7 +74,7 @@ void flash_text(char* text) {
     
     screen_changed(window, NULL, NULL);
     
-    g_timeout_add(14, (GSourceFunc) time_handler, (gpointer) window);
+    g_timeout_add(50, (GSourceFunc) time_handler, (gpointer) window);
     gtk_widget_show(window);
 }
 
@@ -115,7 +118,8 @@ static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer u
 
     static gdouble alpha = 1.0;
     static gdouble size = 1;
-    char* text = (char*) user_data;
+    char* text = (char*) (gpointer) user_data;
+    printf("textDisplay: %s\n", text);
     cr = gdk_cairo_create(widget->window);
 
     cairo_set_source_rgba(cr, 1.0, 1.0, 1.0, 0.0); 
