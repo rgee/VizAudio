@@ -12,6 +12,6 @@ void vizaudio_display(ca_proplist *data) {
 
     out = (char*) ca_proplist_gets_unlocked(p, CA_PROP_EVENT_ID);
 
-    flash_text();
+    flash_text("ID: %s", out);
 
 }
