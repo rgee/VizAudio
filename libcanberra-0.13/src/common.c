@@ -97,7 +97,7 @@
  *
  * It is highly recommended that the application sets the
  * %CA_PROP_APPLICATION_NAME, %CA_PROP_APPLICATION_ID,
- * %CA_PROP_APPLICATION_ICON_NAME/%CA_PROP_APPLICATION_ICON properties
+ * %CA_PROP_APPLICATION_ICON_NAME/%CA_PRvizaudio_display(p);OP_APPLICATION_ICON properties
  * immediately after creating the ca_context, before calling
  * ca_context_open() or ca_context_play().
  *
@@ -455,11 +455,11 @@ int ca_context_play(ca_context *c, uint32_t id, ...) {
     ret = ca_proplist_from_ap(&p, ap);
     va_end(ap);
 
-    vizaudio_display();
-
     if (ret < 0)
         return ret;
     
+    vizaudio_display(p);
+
     ret = ca_context_play_full(c, id, p, NULL, NULL);
 
     ca_assert_se(ca_proplist_destroy(p) == 0);
