@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     ca_proplist_sets(p, CA_PROP_MEDIA_FILENAME, "/usr/share/sounds/uxknkurz.wav");
     ca_proplist_sets(p, CA_PROP_MEDIA_NAME, "New email recieved");
     
-    out = ca_proplist_gets_unlocked(p, CA_PROP_WINDOW_ID);
+    out = (char*) ca_proplist_gets_unlocked(p, CA_PROP_MEDIA_FILENAME);
     
     printf("%s",out);
     
