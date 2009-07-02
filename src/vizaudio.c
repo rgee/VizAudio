@@ -4,8 +4,6 @@
  *  libCanberra property list. (Proplist parsing not implemented ATM)
  */
 
-
-
 #include <vizaudio.h>
 
 
@@ -30,6 +28,41 @@ void flash_image(char* filename) {
     /* This function takes the function endFlash and calls it with a time
      * interval defined by the first parameter */
     g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+}
+
+/*
+ * This will display a small window on the bottom of the screen
+ * containing the Artist and Title of a song.
+ */
+void song_popup(char* artist, char* title){
+	GtkWidget *window;
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+	gtk_window_set_gravity(GTK_WINDOW(window), GDK_GRAVITY_SOUTH_EAST);
+	gtk_window_move(GTK_WINDOW(window), gdk_screen_width() - 220,
+										gdk_screen_height() - 140);
+	
+	cairo_t *cr;
+	int width, height;
+	gdouble alpha = 0.0;
+	cairo_surface_t *image;
+	cairo_set_source_rgba(cr, 1.0, 1.0, 1.0, 0.0);
+	image = cairo_image_surface_create_from_png("data/popup.png");
+	width = cairo_image_surface_get_width(image);
+	height = cairo_image_surface_get_height(image);
+
+	if(alpha < 0){
+		alpha = 0.0;
+	}else if(alpha < 1.0){
+		alpha += 0.01;
+	}else{
+		alpha -= 0.01;
+	}
+	
+	cairo_set_source_surface(cr, image, 0, 0);
+	cairo_paint_with_alpha(cr, alpha);
+	cairo_surface_destroy(image); 
+	cairo_destroy(cr);
 }
 
 //Quickly displays a color fullscreen
@@ -159,3 +192,5 @@ static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer u
     //gtk_object_destroy(GTK_OBJECT(widget));
     return FALSE;
 }
+
+

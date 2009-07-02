@@ -108,6 +108,14 @@ extern "C" {
 #define CA_PROP_MEDIA_ICON_NAME                    "media.icon_name"
 
 /**
+ * CA_PROP_MEDIA_IMAGE_FILENAME
+ * 
+ * A path to an image to be associated with this audio event
+ * for visual effects.
+ */
+#define CA_PROP_MEDIA_IMAGE_FILENAME				"media.image.filename"
+
+/**
  * CA_PROP_MEDIA_ROLE:
  *
  * The "role" this media is played in. For event sounds the string
@@ -173,6 +181,16 @@ extern "C" {
  * for left mouse button, 3 for right, 2 for middle.
  */
 #define CA_PROP_EVENT_MOUSE_BUTTON                 "event.mouse.button"
+
+
+/**
+ * CA_PROP_EVENT_VISUAL_EFFECT
+ * 
+ * If this sound event was triggered by a window on the screen, the
+ * name of the desired visual effect to associate with this sound event
+ * as a human readable.
+ */
+#define CA_PROP_EVENT_VISUAL_EFFECT				   "window.visual.effect"
 
 /**
  * CA_PROP_WINDOW_NAME:
