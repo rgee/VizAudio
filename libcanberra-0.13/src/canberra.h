@@ -72,6 +72,15 @@ extern "C" {
  */
 #define CA_PROP_MEDIA_TITLE                        "media.title"
 
+
+/**
+ * CA_PROP_MEDIA_IMAGE_FILENAME:
+ *
+ * A name for a file an image associated with a sound can be loaded with
+ * Used for VizAudio
+ */
+#define CA_PROP_MEDIA_IMAGE_FILENAME			   "media.image.filename"
+
 /**
  * CA_PROP_MEDIA_ARTIST:
  *
@@ -106,14 +115,6 @@ extern "C" {
  * An icon name as defined in the XDG icon naming specifcation.
  */
 #define CA_PROP_MEDIA_ICON_NAME                    "media.icon_name"
-
-/**
- * CA_PROP_MEDIA_IMAGE_FILENAME
- * 
- * A path to an image to be associated with this audio event
- * for visual effects.
- */
-#define CA_PROP_MEDIA_IMAGE_FILENAME				"media.image.filename"
 
 /**
  * CA_PROP_MEDIA_ROLE:
@@ -182,15 +183,13 @@ extern "C" {
  */
 #define CA_PROP_EVENT_MOUSE_BUTTON                 "event.mouse.button"
 
-
 /**
- * CA_PROP_EVENT_VISUAL_EFFECT
- * 
- * If this sound event was triggered by a window on the screen, the
- * name of the desired visual effect to associate with this sound event
- * as a human readable.
+ * CA_PROP_EVENT_VISUAL_EFFECT:
+ *
+ * The string denoting which visual effect will be played by VizAudio.
+ * See VizAudio documentation for naming specification.
  */
-#define CA_PROP_EVENT_VISUAL_EFFECT				   "window.visual.effect"
+#define CA_PROP_EVENT_VISUAL_EFFECT					"event.visual.effect"
 
 /**
  * CA_PROP_WINDOW_NAME:

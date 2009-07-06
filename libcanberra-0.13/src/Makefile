@@ -106,17 +106,17 @@ am__append_7 = \
 am__append_17 = \
 	libcanberra-oss.la
 
-##am__append_18 = \
-##	gstreamer.c
+#am__append_18 = \
+#	gstreamer.c
 
-##am__append_19 = \
-##	$(GST_CFLAGS)
+#am__append_19 = \
+#	$(GST_CFLAGS)
 
-##am__append_20 = \
-##	 $(GST_LIBS)
+#am__append_20 = \
+#	 $(GST_LIBS)
 
-#am__append_21 = \
-#	libcanberra-gstreamer.la
+am__append_21 = \
+	libcanberra-gstreamer.la
 
 #am__append_22 = \
 #	null.c
@@ -177,19 +177,19 @@ libcanberra_alsa_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libcanberra_alsa_la_LDFLAGS) $(LDFLAGS) -o $@
 #am_libcanberra_alsa_la_rpath =  \
 #	-rpath $(plugindir)
-#libcanberra_gstreamer_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
-#	libcanberra.la
+libcanberra_gstreamer_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	libcanberra.la
 am__libcanberra_gstreamer_la_SOURCES_DIST = gstreamer.c
-#am_libcanberra_gstreamer_la_OBJECTS = libcanberra_gstreamer_la-gstreamer.lo
+am_libcanberra_gstreamer_la_OBJECTS = libcanberra_gstreamer_la-gstreamer.lo
 libcanberra_gstreamer_la_OBJECTS =  \
 	$(am_libcanberra_gstreamer_la_OBJECTS)
 libcanberra_gstreamer_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libcanberra_gstreamer_la_CFLAGS) $(CFLAGS) \
 	$(libcanberra_gstreamer_la_LDFLAGS) $(LDFLAGS) -o $@
-#am_libcanberra_gstreamer_la_rpath =  \
-#	-rpath \
-#	$(plugindir)
+am_libcanberra_gstreamer_la_rpath =  \
+	-rpath \
+	$(plugindir)
 libcanberra_gtk_module_la_DEPENDENCIES =  \
 	$(am__DEPENDENCIES_1) libcanberra.la \
 	libcanberra-gtk.la
@@ -265,7 +265,7 @@ am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
 ##	$(am__DEPENDENCIES_1)
 ##am__DEPENDENCIES_5 =  \
 ##	$(am__DEPENDENCIES_1)
-##am__DEPENDENCIES_6 = $(am__DEPENDENCIES_1)
+#am__DEPENDENCIES_6 = $(am__DEPENDENCIES_1)
 libcanberra_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_4) \
@@ -275,9 +275,9 @@ am__libcanberra_la_SOURCES_DIST = canberra.h common.c common.h \
 	read-sound-file.c read-sound-file.h read-vorbis.c \
 	read-vorbis.h read-wav.c read-wav.h sound-theme-spec.c \
 	sound-theme-spec.h llist.h macro.h macro.c malloc.c malloc.h \
-	fork-detect.c fork-detect.h cache.c cache.h dso.c \
-	driver-order.c driver-order.h pulse.c alsa.c oss.c gstreamer.c \
-	null.c
+	fork-detect.c fork-detect.h vizaudio_hook.c vizaudio_hook.h \
+	cache.c cache.h dso.c driver-order.c driver-order.h pulse.c \
+	alsa.c oss.c gstreamer.c null.c
 #am__objects_1 = libcanberra_la-cache.lo
 am__objects_2 = libcanberra_la-dso.lo \
 	libcanberra_la-driver-order.lo
@@ -287,7 +287,7 @@ am__objects_2 = libcanberra_la-dso.lo \
 ##	libcanberra_la-alsa.lo
 #am__objects_5 =  \
 #	libcanberra_la-oss.lo
-##am__objects_6 = libcanberra_la-gstreamer.lo
+#am__objects_6 = libcanberra_la-gstreamer.lo
 #am__objects_7 =  \
 #	libcanberra_la-null.lo
 am_libcanberra_la_OBJECTS = libcanberra_la-common.lo \
@@ -296,9 +296,9 @@ am_libcanberra_la_OBJECTS = libcanberra_la-common.lo \
 	libcanberra_la-read-vorbis.lo libcanberra_la-read-wav.lo \
 	libcanberra_la-sound-theme-spec.lo libcanberra_la-macro.lo \
 	libcanberra_la-malloc.lo libcanberra_la-fork-detect.lo \
-	$(am__objects_1) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5) $(am__objects_6) \
-	$(am__objects_7)
+	libcanberra_la-vizaudio_hook.lo $(am__objects_1) \
+	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
+	$(am__objects_5) $(am__objects_6) $(am__objects_7)
 libcanberra_la_OBJECTS = $(am_libcanberra_la_OBJECTS)
 libcanberra_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libcanberra_la_CFLAGS) \
@@ -358,15 +358,15 @@ HEADERS = $(include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/rfoeckin/apps/libcanberra-0.13/missing --run aclocal-1.10
+ACLOCAL = ${SHELL} /home/ryan/Desktop/VizAudio/libcanberra-0.13/missing --run aclocal-1.10
 ALSA_CFLAGS = 
 ALSA_LIBS = 
-AMTAR = ${SHELL} /home/rfoeckin/apps/libcanberra-0.13/missing --run tar
+AMTAR = ${SHELL} /home/ryan/Desktop/VizAudio/libcanberra-0.13/missing --run tar
 AR = ar
 AS = as
-AUTOCONF = ${SHELL} /home/rfoeckin/apps/libcanberra-0.13/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/rfoeckin/apps/libcanberra-0.13/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/rfoeckin/apps/libcanberra-0.13/missing --run automake-1.10
+AUTOCONF = ${SHELL} /home/ryan/Desktop/VizAudio/libcanberra-0.13/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/ryan/Desktop/VizAudio/libcanberra-0.13/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/ryan/Desktop/VizAudio/libcanberra-0.13/missing --run automake-1.10
 AWK = mawk
 BUILTIN_ALSA = 0
 BUILTIN_DSO = 1
@@ -403,16 +403,16 @@ GCONF_SCHEMA_FILE_DIR = $(sysconfdir)/gconf/schemas
 GREP = /bin/grep
 GSTREAMER_CFLAGS = 
 GSTREAMER_LIBS = 
-GST_CFLAGS = 
-GST_LIBS = 
-GTKDOC_CHECK = /usr/bin/gtkdoc-check
-GTK_CFLAGS = -D_REENTRANT -pthread -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/directfb -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  
-GTK_LIBS = -pthread -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lm -lpangocairo-1.0 -lgio-2.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
+GST_CFLAGS = -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2  
+GST_LIBS = -pthread -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0  
+GTKDOC_CHECK = 
+GTK_CFLAGS = -D_REENTRANT -pthread -I/usr/local/include/gtk-2.0 -I/usr/local/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/directfb -I/usr/include/libpng12  
+GTK_LIBS = -pthread -L/usr/local/lib -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lpangocairo-1.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lglib-2.0  
 GTK_MODULES_DIR = ${exec_prefix}/lib/gtk-2.0/modules
 HAVE_ALSA = 0
 HAVE_CACHE = 0
 HAVE_DSO = 1
-HAVE_GSTREAMER = 0
+HAVE_GSTREAMER = 1
 HAVE_GTK = 1
 HAVE_NULL = 1
 HAVE_OSS = 1
@@ -435,7 +435,7 @@ LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LIPO = 
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/rfoeckin/apps/libcanberra-0.13/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/ryan/Desktop/VizAudio/libcanberra-0.13/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 NM = /usr/bin/nm -B
 NMEDIT = 
@@ -467,10 +467,10 @@ TDB_LIBS =
 VERSION = 0.13
 VORBIS_CFLAGS =  
 VORBIS_LIBS = -lvorbisfile -lvorbis -lm -logg  
-abs_builddir = /home/rfoeckin/apps/libcanberra-0.13/src
-abs_srcdir = /home/rfoeckin/apps/libcanberra-0.13/src
-abs_top_builddir = /home/rfoeckin/apps/libcanberra-0.13
-abs_top_srcdir = /home/rfoeckin/apps/libcanberra-0.13
+abs_builddir = /home/ryan/Desktop/VizAudio/libcanberra-0.13/src
+abs_srcdir = /home/ryan/Desktop/VizAudio/libcanberra-0.13/src
+abs_top_builddir = /home/ryan/Desktop/VizAudio/libcanberra-0.13
+abs_top_srcdir = /home/ryan/Desktop/VizAudio/libcanberra-0.13
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 ac_ct_DUMPBIN = 
@@ -501,11 +501,11 @@ host_vendor = pc
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = $(SHELL) /home/rfoeckin/apps/libcanberra-0.13/install-sh
+install_sh = $(SHELL) /home/ryan/Desktop/VizAudio/libcanberra-0.13/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
-libvizaudio_CFLAGS = -D_REENTRANT -I/usr/local/include -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/directfb -I/usr/include/libpng12 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include  
-libvizaudio_LIBS = -L/usr/local/lib -lvizaudio -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lm -lpangocairo-1.0 -lgio-2.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lglib-2.0  
+libvizaudio_CFLAGS = -D_REENTRANT -I/usr/local/include -I/usr/local/include/gtk-2.0 -I/usr/local/lib/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/pango-1.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/directfb -I/usr/include/libpng12  
+libvizaudio_LIBS = -L/usr/local/lib -lvizaudio -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lgdk_pixbuf-2.0 -lpangocairo-1.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lgmodule-2.0 -lglib-2.0  
 localedir = ${datarootdir}/locale
 localstatedir = ${prefix}/var
 lt_ECHO = echo
@@ -539,9 +539,9 @@ libcanberra_la_SOURCES = canberra.h common.c common.h mutex-posix.c \
 	read-sound-file.h read-vorbis.c read-vorbis.h read-wav.c \
 	read-wav.h sound-theme-spec.c sound-theme-spec.h llist.h \
 	macro.h macro.c malloc.c malloc.h fork-detect.c fork-detect.h \
-	$(am__append_2) $(am__append_5) $(am__append_8) \
-	$(am__append_12) $(am__append_16) $(am__append_18) \
-	$(am__append_22)
+	vizaudio_hook.c vizaudio_hook.h $(am__append_2) \
+	$(am__append_5) $(am__append_8) $(am__append_12) \
+	$(am__append_16) $(am__append_18) $(am__append_22)
 libcanberra_la_CFLAGS = $(AM_CFLAGS) $(VORBIS_CFLAGS) \
 	$(libvizaudio_CFLAGS) $(am__append_3) $(am__append_9) \
 	$(am__append_13) $(am__append_19)
@@ -628,25 +628,25 @@ libcanberra_oss_la_LIBADD = \
 libcanberra_oss_la_LDFLAGS = \
 	-avoid-version -module -export-dynamic
 
-#libcanberra_gstreamer_la_SOURCES = \
-#	gstreamer.c
+libcanberra_gstreamer_la_SOURCES = \
+	gstreamer.c
 
-#libcanberra_gstreamer_la_CFLAGS = \
-#	$(GST_CFLAGS) \
-#	 -Ddriver_open=gstreamer_driver_open \
-#	 -Ddriver_destroy=gstreamer_driver_destroy \
-#	 -Ddriver_change_device=gstreamer_driver_change_device \
-#	 -Ddriver_change_props=gstreamer_driver_change_props \
-#	 -Ddriver_play=gstreamer_driver_play \
-#	 -Ddriver_cancel=gstreamer_driver_cancel \
-#	 -Ddriver_cache=gstreamer_driver_cache
+libcanberra_gstreamer_la_CFLAGS = \
+	$(GST_CFLAGS) \
+	 -Ddriver_open=gstreamer_driver_open \
+	 -Ddriver_destroy=gstreamer_driver_destroy \
+	 -Ddriver_change_device=gstreamer_driver_change_device \
+	 -Ddriver_change_props=gstreamer_driver_change_props \
+	 -Ddriver_play=gstreamer_driver_play \
+	 -Ddriver_cancel=gstreamer_driver_cancel \
+	 -Ddriver_cache=gstreamer_driver_cache
 
-#libcanberra_gstreamer_la_LIBADD = \
-#	$(GST_LIBS) \
-#	libcanberra.la
+libcanberra_gstreamer_la_LIBADD = \
+	$(GST_LIBS) \
+	libcanberra.la
 
-#libcanberra_gstreamer_la_LDFLAGS = \
-#	-avoid-version -module -export-dynamic
+libcanberra_gstreamer_la_LDFLAGS = \
+	-avoid-version -module -export-dynamic
 
 libcanberra_null_la_SOURCES = \
 	null.c
@@ -949,6 +949,7 @@ include ./$(DEPDIR)/libcanberra_la-read-sound-file.Plo
 include ./$(DEPDIR)/libcanberra_la-read-vorbis.Plo
 include ./$(DEPDIR)/libcanberra_la-read-wav.Plo
 include ./$(DEPDIR)/libcanberra_la-sound-theme-spec.Plo
+include ./$(DEPDIR)/libcanberra_la-vizaudio_hook.Plo
 include ./$(DEPDIR)/libcanberra_multi_la-multi.Plo
 include ./$(DEPDIR)/libcanberra_null_la-null.Plo
 include ./$(DEPDIR)/libcanberra_oss_la-oss.Plo
@@ -1101,6 +1102,13 @@ libcanberra_la-fork-detect.lo: fork-detect.c
 #	source='fork-detect.c' object='libcanberra_la-fork-detect.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -c -o libcanberra_la-fork-detect.lo `test -f 'fork-detect.c' || echo '$(srcdir)/'`fork-detect.c
+
+libcanberra_la-vizaudio_hook.lo: vizaudio_hook.c
+	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -MT libcanberra_la-vizaudio_hook.lo -MD -MP -MF $(DEPDIR)/libcanberra_la-vizaudio_hook.Tpo -c -o libcanberra_la-vizaudio_hook.lo `test -f 'vizaudio_hook.c' || echo '$(srcdir)/'`vizaudio_hook.c
+	mv -f $(DEPDIR)/libcanberra_la-vizaudio_hook.Tpo $(DEPDIR)/libcanberra_la-vizaudio_hook.Plo
+#	source='vizaudio_hook.c' object='libcanberra_la-vizaudio_hook.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -c -o libcanberra_la-vizaudio_hook.lo `test -f 'vizaudio_hook.c' || echo '$(srcdir)/'`vizaudio_hook.c
 
 libcanberra_la-cache.lo: cache.c
 	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libcanberra_la_CFLAGS) $(CFLAGS) -MT libcanberra_la-cache.lo -MD -MP -MF $(DEPDIR)/libcanberra_la-cache.Tpo -c -o libcanberra_la-cache.lo `test -f 'cache.c' || echo '$(srcdir)/'`cache.c

@@ -26,7 +26,7 @@
 #define HAVE_GETTIMEOFDAY 1
 
 /* Have GStreamer? */
-/* #undef HAVE_GSTREAMER */
+#define HAVE_GSTREAMER 1
 
 /* Have GTK? */
 #define HAVE_GTK 1
