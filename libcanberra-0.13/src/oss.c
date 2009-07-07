@@ -153,7 +153,7 @@ int driver_destroy(ca_context *c) {
                 out->pipe_fd[1] = -1;
             }
         }
-
+		// Sneaky comment
         if (p->semaphore_allocated) {
             /* Now wait until all players are destroyed */
             p->signal_semaphore = TRUE;
