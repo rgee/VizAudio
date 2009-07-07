@@ -5,7 +5,7 @@
  */
 
 #include <vizaudio.h>
-#include <gconf/2/gconf/gconf-client.h>
+
 
 
 /* Global Variables */
