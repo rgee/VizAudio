@@ -10,6 +10,6 @@ URL: seaslug.org
 Version: @VERSION@
 Libs: -L${libdir} -lvizaudio
 Cflags: -I${includedir}
-Requires: gtk+-2.0
+Requires: gtk+-2.0 gconf-2.0
 \-------------------------------------------------------
 
