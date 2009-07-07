@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkscreen.h>
 #include <cairo.h>
+#include <gconf/gconf-client.h>
 
 void flash_color();
 void song_popup(char* artist, char* title);
