@@ -20,7 +20,7 @@ void initGConfFlag(){
 	GConfClient* client;
 	gchar* dir = "/apps/vizaudio/preferences";
 	gchar* key = "/apps/vizaudio/preferences/enabled";
-	client = gconf_client_new();
+	client = gconf_client_get_default();
 	
 	if(gconf_client_dir_exists(client, dir, NULL)){
 		gconf_enabled_flag = gconf_client_get_int(client, key, NULL);			

@@ -60,7 +60,7 @@ libcanberra_la_CFLAGS = \
 	$(VORBIS_CFLAGS) \
     $(libvizaudio_CFLAGS)
 libcanberra_la_LIBADD = \
-	$(VORBIS_LIBS) \ 
+	$(VORBIS_LIBS) \
     $(libvizaudio_LIBS)
 libcanberra_la_LDFLAGS = \
 	-export-dynamic \
