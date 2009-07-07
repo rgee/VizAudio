@@ -4,84 +4,156 @@
  *  libCanberra property list. (Proplist parsing not implemented ATM)
  */
 
-
-
 #include <vizaudio.h>
+#include <gconf/2/gconf/gconf-client.h>
 
 
 /* Global Variables */
 gboolean timer = TRUE;
+gint gconf_enabled_flag = 0;
+
+/**
+ * If the GConf flag describing VizAudio's status (enabled / disabled)
+ * is not defined, defines it to the default value of (1, enabled)
+ */
+void initGConfFlag(){
+	GConfClient* client;
+	gchar* dir = "/apps/vizaudio/preferences";
+	gchar* key = "/apps/vizaudio/preferences/enabled";
+	client = gconf_client_new();
+	
+	if(gconf_client_dir_exists(client, dir, NULL)){
+		gconf_enabled_flag = gconf_client_get_int(client, key, NULL);			
+	}else{
+		gconf_client_set_int(client, key, 1, NULL);
+		gconf_enabled_flag = 1;
+	}
+}
+
+/**
+ * Determines whether VizAudio is enabled.
+ * 
+ * Returns: 1 if VizAudio is enabled, 0 otherwise.
+ */
+int isVAEnabled(){
+	initGConfFlag();
+	
+	if(!gconf_enabled_flag){
+		return 0;
+	}else{
+		return 1;
+	}
+}
 
 //Quickly displays an image
 void flash_image(char* filename) {
+	GtkWidget *window;
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+	
+	GtkWidget* image;
+	image = gtk_image_new_from_file(filename);
+	gtk_container_add (GTK_CONTAINER (window), image);
+	
+	gtk_widget_show(image);    
+	gtk_widget_show(window);        
+	
+	/* This function takes the function endFlash and calls it with a time
+	 * interval defined by the first parameter */
+	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+}
 
-    GtkWidget *window;
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    
-    GtkWidget* image;
-    image = gtk_image_new_from_file(filename);
-    gtk_container_add (GTK_CONTAINER (window), image);
-    
-    gtk_widget_show(image);    
-    gtk_widget_show(window);        
-    
-    /* This function takes the function endFlash and calls it with a time
-     * interval defined by the first parameter */
-    g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+/**
+ * This will display a small window on the bottom of the screen
+ * containing the Artist and Title of a song.
+ */
+void song_popup(char* artist, char* title){
+
+	GtkWidget *window;
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+	gtk_window_set_gravity(GTK_WINDOW(window), GDK_GRAVITY_SOUTH_EAST);
+	gtk_window_move(GTK_WINDOW(window), gdk_screen_width() - 220,
+										gdk_screen_height() - 140);
+	
+	cairo_t *cr;
+	int width, height;
+	gdouble alpha = 0.0;
+	cairo_surface_t *image;
+	cairo_set_source_rgba(cr, 1.0, 1.0, 1.0, 0.0);
+	image = cairo_image_surface_create_from_png("data/popup.png");
+	width = cairo_image_surface_get_width(image);
+	height = cairo_image_surface_get_height(image);
+
+	if(alpha < 0){
+		alpha = 0.0;
+	}else if(alpha < 1.0){
+		alpha += 0.01;
+	}else{
+		alpha -= 0.01;
+	}
+	
+	cairo_set_source_surface(cr, image, 0, 0);
+	cairo_paint_with_alpha(cr, alpha);
+	cairo_surface_destroy(image); 
+	cairo_destroy(cr);
 }
 
 //Quickly displays a color fullscreen
 void flash_color() {
-    GtkWidget *window;
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
-    gtk_window_fullscreen(GTK_WINDOW(window));
+	GtkWidget *window;
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+	gtk_window_fullscreen(GTK_WINDOW(window));
 
-    GdkColor color;
-    gdk_color_parse("light blue", &color);
-    gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color);
-    
-    
-    gtk_widget_show(window);
-    
-/* This function takes the function endFlash and calls it with a time
- * interval defined by the first parameter 
- */
-    g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+	GdkColor color;
+	gdk_color_parse("light blue", &color);
+	gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color);
+	
+	
+	gtk_widget_show(window);
+	
+	/** This function takes the function endFlash and calls it with a time
+	 * interval defined by the first parameter 
+	 */
+	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
 }
 
 //Quickly zooms some text at you
 void flash_text(char* text) {
+	GtkWidget *window;
+	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
+	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
+	gtk_widget_set_app_paintable(window, TRUE);
+	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
+	
+	printf("flash_text: %s\n", text);
 
-    GtkWidget *window;
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
-    gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
-    gtk_widget_set_app_paintable(window, TRUE);
-    gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
-    
-    printf("flash_text: %s\n", text);
-    //printf("as pointer: %s\n", (gpointer)(text));
-
-    /* Link the callbacks */
-    g_signal_connect(G_OBJECT(window), "destroy", gtk_main_quit, NULL);
-    g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), (gpointer)(text));
-    g_signal_connect(G_OBJECT(window), "screen-changed", G_CALLBACK(screen_changed), NULL);
-    
-    gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
-    
-    screen_changed(window, NULL, NULL);
-    
-    g_timeout_add(50, (GSourceFunc) time_handler, (gpointer) window);
-    gtk_widget_show(window);
+	/* Link the callbacks */
+	g_signal_connect(G_OBJECT(window), "destroy", gtk_main_quit, NULL);
+	g_signal_connect(G_OBJECT(window), "expose-event", G_CALLBACK(textDisplay), (gpointer)(text));
+	g_signal_connect(G_OBJECT(window), "screen-changed", G_CALLBACK(screen_changed), NULL);
+	
+	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+	
+	screen_changed(window, NULL, NULL);
+	
+	g_timeout_add(50, (GSourceFunc) time_handler, (gpointer) window);
+	gtk_widget_show(window);
 }
 
+/**
+ * Default effect?
+ */ 
 void print_text() {
     printf("DEFAULT\n"); //never call this method
 }
 
+/**
+ * Callback function for the screen flash window destruction
+ */
 static gboolean endFlash(GtkWidget *window){
     gtk_object_destroy(GTK_OBJECT(window));
     return FALSE;
@@ -98,6 +170,9 @@ static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer us
     gtk_widget_set_colormap(widget, colormap);
 }
 
+/**
+ * Send expose events until the timer dies
+ */
 static gboolean time_handler (GtkWidget *widget){
   if (widget->window == NULL) return FALSE;
 
@@ -159,3 +234,5 @@ static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer u
     //gtk_object_destroy(GTK_OBJECT(widget));
     return FALSE;
 }
+
+

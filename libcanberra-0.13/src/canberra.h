@@ -72,6 +72,15 @@ extern "C" {
  */
 #define CA_PROP_MEDIA_TITLE                        "media.title"
 
+
+/**
+ * CA_PROP_MEDIA_IMAGE_FILENAME:
+ *
+ * A name for a file an image associated with a sound can be loaded with
+ * Used for VizAudio
+ */
+#define CA_PROP_MEDIA_IMAGE_FILENAME			   "media.image.filename"
+
 /**
  * CA_PROP_MEDIA_ARTIST:
  *
@@ -173,6 +182,14 @@ extern "C" {
  * for left mouse button, 3 for right, 2 for middle.
  */
 #define CA_PROP_EVENT_MOUSE_BUTTON                 "event.mouse.button"
+
+/**
+ * CA_PROP_EVENT_VISUAL_EFFECT:
+ *
+ * The string denoting which visual effect will be played by VizAudio.
+ * See VizAudio documentation for naming specification.
+ */
+#define CA_PROP_EVENT_VISUAL_EFFECT					"event.visual.effect"
 
 /**
  * CA_PROP_WINDOW_NAME:

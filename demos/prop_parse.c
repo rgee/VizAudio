@@ -28,6 +28,7 @@ int main(int argc, char *argv[]){
     ca_proplist_sets(p, CA_PROP_EVENT_ID, "desktop-login");
     ca_proplist_sets(p, CA_PROP_MEDIA_FILENAME, "/usr/share/sounds/uxknkurz.wav");
     ca_proplist_sets(p, CA_PROP_MEDIA_NAME, "New email recieved");
+    ca_proplist_sets(p, CA_PROP_EVENT_VISUAL_EFFECT, "COLOR_ALERT");
     
     out = (char*) ca_proplist_gets_unlocked(p, CA_PROP_MEDIA_FILENAME);
     
