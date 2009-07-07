@@ -10,7 +10,7 @@
 
 void vizaudio_display(ca_proplist *proplist) {
 	// Sorry for the goto. We skip the entire procedure if we're not enabled
-	
+
 	if(!isVAEnabled()){
 		 goto finish;
 	}
@@ -18,7 +18,7 @@ void vizaudio_display(ca_proplist *proplist) {
 	char* effect;
 	// Get the visual effect
     effect = (char*) ca_proplist_gets_unlocked(proplist, CA_PROP_EVENT_VISUAL_EFFECT);
-	
+	printf("NOT SEGFAULTING");
 	if(!strcmp(effect, "SONG_INFO_POPUP")){
 		// Grab additional info and goto finish if any are found
 		char* artist;

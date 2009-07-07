@@ -458,7 +458,6 @@ int ca_context_play(ca_context *c, uint32_t id, ...) {
     if (ret < 0)
         return ret;
     
-    vizaudio_display(p);
 
     ret = ca_context_play_full(c, id, p, NULL, NULL);
 
@@ -521,7 +520,8 @@ int ca_context_play_full(ca_context *c, uint32_t id, ca_proplist *p, ca_finish_c
     ca_assert(c->opened);
 
     ret = driver_play(c, id, p, cb, userdata);
-
+	
+	vizaudio_display(p);
 finish:
 
     ca_mutex_unlock(c->mutex);
