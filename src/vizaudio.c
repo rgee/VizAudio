@@ -1,8 +1,30 @@
-/* This is the main source file for VizAudio. Audio function calls will pass through 
- *  vizaudio_display, carrying the same information as is passed ca_context_play in
- *  libCanberra. This will allow us to select the proper visual effect based on the 
- *  libCanberra property list. (Proplist parsing not implemented ATM)
+/*
+ * 
  */
+
+/**
+* Project: VizAudio
+* File name: vizaudio.c
+* Description: This is the main source file for VizAudio. Audio function calls will
+*  pass through vizaudio_display, carrying the same information as is passed
+*  ca_context_play in libCanberra. This will allow us to select the proper visual
+*  effect based on the libCanberra property list.
+* 
+*
+* LICENSE: This source file is subject to LGPL license
+* that is available through the world-wide-web at the following URI:
+* http://www.gnu.org/copyleft/lesser.html
+*
+* @author       Ryan Gee
+* @author       Rachel Foecking
+* @author		Foster Nichols
+* @copyright    Humanitarian FOSS Project (http://www.hfoss.org), Copyright (C) 2009.
+* @package
+* @subpackage
+* @tutorial
+* @license  http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
+* @version
+*/
 
 #include <vizaudio.h>
 
@@ -59,8 +81,6 @@ void flash_image(char* filename) {
 	gtk_widget_show(image);    
 	gtk_widget_show(window);        
 	
-	/* This function takes the function endFlash and calls it with a time
-	 * interval defined by the first parameter */
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
 }
 
@@ -148,7 +168,7 @@ void flash_text(char* text) {
  * Default effect?
  */ 
 void print_text() {
-    printf("DEFAULT\n"); //never call this method
+    printf("DEFAULT\n");
 }
 
 /**
@@ -163,7 +183,6 @@ static gboolean endFlash(GtkWidget *window){
  * for the passed widget 
  */
 static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data){
-    /* To check if the display supports alpha channels, get the colormap */
     GdkScreen *screen = gtk_widget_get_screen(widget);
     GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
     
@@ -231,7 +250,6 @@ static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer u
     }
 
     cairo_destroy(cr);
-    //gtk_object_destroy(GTK_OBJECT(widget));
     return FALSE;
 }
 
