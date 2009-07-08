@@ -1,7 +1,3 @@
-/*
- * 
- */
-
 /**
 * Project: VizAudio
 * File name: vizaudio.c
@@ -164,25 +160,19 @@ void flash_text(char* text) {
 	gtk_widget_show(window);
 }
 
-/**
- * Default effect?
- */ 
-void print_text() {
-    printf("DEFAULT\n");
-}
 
 /**
  * Callback function for the screen flash window destruction
  */
-static gboolean endFlash(GtkWidget *window){
+gboolean endFlash(GtkWidget *window){
     gtk_object_destroy(GTK_OBJECT(window));
     return FALSE;
 }
 
-/* Callback function for whenever the GdkScreen becomes the active screen
+/** Callback function for whenever the GdkScreen becomes the active screen
  * for the passed widget 
  */
-static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data){
+void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data){
     GdkScreen *screen = gtk_widget_get_screen(widget);
     GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
     
@@ -192,7 +182,7 @@ static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer us
 /**
  * Send expose events until the timer dies
  */
-static gboolean time_handler (GtkWidget *widget){
+gboolean time_handler (GtkWidget *widget){
   if (widget->window == NULL) return FALSE;
 
   if (!timer) return FALSE;
@@ -203,10 +193,10 @@ static gboolean time_handler (GtkWidget *widget){
   return TRUE;
 }
 
-/* This function displays text flying toward the screen, growing as it moves.
- *
+/** 
+ * This function displays text flying toward the screen, growing as it moves.
  */
-static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data) {
+gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data) {
     cairo_t *cr;
     cairo_text_extents_t extents;   
 
