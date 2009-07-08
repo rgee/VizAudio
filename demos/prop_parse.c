@@ -1,3 +1,26 @@
+/**
+* Project: VizAudio
+* File name: prop_parse.c
+* Description: This is simply a test program for libcanberra property lists
+* and GConf support.
+* 
+*
+* LICENSE: This source file is subject to LGPL license
+* that is available through the world-wide-web at the following URI:
+* http://www.gnu.org/copyleft/lesser.html
+*
+* @author       Ryan Gee
+* @author       Rachel Foecking
+* @author		Foster Nichols
+* @copyright    Humanitarian FOSS Project (http://www.hfoss.org), Copyright (C) 2009.
+* @package
+* @subpackage
+* @tutorial
+* @license  http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
+* @version
+*/
+
+
 #include "canberra.h"
 
 #include <stdlib.h>
