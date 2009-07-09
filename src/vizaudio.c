@@ -1,8 +1,26 @@
-/* This is the main source file for VizAudio. Audio function calls will pass through 
- *  vizaudio_display, carrying the same information as is passed ca_context_play in
- *  libCanberra. This will allow us to select the proper visual effect based on the 
- *  libCanberra property list. (Proplist parsing not implemented ATM)
- */
+/**
+* Project: VizAudio
+* File name: vizaudio.c
+* Description: This is the main source file for VizAudio. Audio function calls will
+*  pass through vizaudio_display, carrying the same information as is passed
+*  ca_context_play in libCanberra. This will allow us to select the proper visual
+*  effect based on the libCanberra property list.
+* 
+*
+* LICENSE: This source file is subject to LGPL license
+* that is available through the world-wide-web at the following URI:
+* http://www.gnu.org/copyleft/lesser.html
+*
+* @author       Ryan Gee
+* @author       Rachel Foecking
+* @author		Foster Nichols
+* @copyright    Humanitarian FOSS Project (http://www.hfoss.org), Copyright (C) 2009.
+* @package
+* @subpackage
+* @tutorial
+* @license  http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
+* @version
+*/
 
 #include <vizaudio.h>
 
@@ -20,7 +38,7 @@ void initGConfFlag(){
 	GConfClient* client;
 	gchar* dir = "/apps/vizaudio/preferences";
 	gchar* key = "/apps/vizaudio/preferences/enabled";
-	client = gconf_client_new();
+	client = gconf_client_get_default();
 	
 	if(gconf_client_dir_exists(client, dir, NULL)){
 		gconf_enabled_flag = gconf_client_get_int(client, key, NULL);			
@@ -59,8 +77,6 @@ void flash_image(char* filename) {
 	gtk_widget_show(image);    
 	gtk_widget_show(window);        
 	
-	/* This function takes the function endFlash and calls it with a time
-	 * interval defined by the first parameter */
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
 }
 
@@ -144,26 +160,19 @@ void flash_text(char* text) {
 	gtk_widget_show(window);
 }
 
-/**
- * Default effect?
- */ 
-void print_text() {
-    printf("DEFAULT\n"); //never call this method
-}
 
 /**
  * Callback function for the screen flash window destruction
  */
-static gboolean endFlash(GtkWidget *window){
+gboolean endFlash(GtkWidget *window){
     gtk_object_destroy(GTK_OBJECT(window));
     return FALSE;
 }
 
-/* Callback function for whenever the GdkScreen becomes the active screen
+/** Callback function for whenever the GdkScreen becomes the active screen
  * for the passed widget 
  */
-static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data){
-    /* To check if the display supports alpha channels, get the colormap */
+void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data){
     GdkScreen *screen = gtk_widget_get_screen(widget);
     GdkColormap *colormap = gdk_screen_get_rgba_colormap(screen);
     
@@ -173,7 +182,7 @@ static void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer us
 /**
  * Send expose events until the timer dies
  */
-static gboolean time_handler (GtkWidget *widget){
+gboolean time_handler (GtkWidget *widget){
   if (widget->window == NULL) return FALSE;
 
   if (!timer) return FALSE;
@@ -184,10 +193,10 @@ static gboolean time_handler (GtkWidget *widget){
   return TRUE;
 }
 
-/* This function displays text flying toward the screen, growing as it moves.
- *
+/** 
+ * This function displays text flying toward the screen, growing as it moves.
  */
-static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data) {
+gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data) {
     cairo_t *cr;
     cairo_text_extents_t extents;   
 
@@ -231,7 +240,6 @@ static gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer u
     }
 
     cairo_destroy(cr);
-    //gtk_object_destroy(GTK_OBJECT(widget));
     return FALSE;
 }
 
