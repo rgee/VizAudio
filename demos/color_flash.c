@@ -20,6 +20,7 @@
 */
 
 #include <gtk/gtk.h>
+#include <canberra.h>
 #include <canberra-gtk.h>
 
 /* Destroys the window. Wrapped to facilitate timing from
@@ -35,9 +36,11 @@ static void hello( GtkWidget *widget,
                    gpointer   data )
 {
     g_print ("Hello World\n");
-    ca_context_play (ca_gtk_context_get (), 0,
+    printf("%d",ca_context_play (ca_gtk_context_get (), 0,
 			 CA_PROP_EVENT_ID, "button-pressed",
-			 CA_PROP_EVENT_DESCRIPTION, "haha description",NULL);
+			 CA_PROP_EVENT_DESCRIPTION, "haha description",
+             CA_PROP_VISUAL_EFFECT, "COLOR_ALERT",
+            NULL));
     #if 0
     /* Create a temporary, decorationless window */
     GtkWidget* tempFlashWindow;
