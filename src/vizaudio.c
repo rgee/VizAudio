@@ -122,6 +122,8 @@ void song_popup(char* artist, char* title){
 //Quickly displays a color fullscreen
 void flash_color() {
 	gtk_init(NULL, NULL);
+	
+	
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
