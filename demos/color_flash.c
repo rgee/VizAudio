@@ -1,8 +1,7 @@
 /**
 * Project: VizAudio
 * File name: color_flash.c
-* Description: This is simply a test program for visual effects. It displays
-* a fullscreen flashing color.
+* Description: This is simply a test program for visual effects
 * 
 *
 * LICENSE: This source file is subject to LGPL license
@@ -21,6 +20,7 @@
 */
 
 #include <gtk/gtk.h>
+#include <canberra.h>
 #include <canberra-gtk.h>
 
 /* Destroys the window. Wrapped to facilitate timing from
@@ -35,30 +35,14 @@ static gboolean endFlash(GtkWidget *window){
 static void hello( GtkWidget *widget,
                    gpointer   data )
 {
+    
+/* Use libcanbera to play an event sound and specify a visual effect to go along with it.*/
     g_print ("Hello World\n");
-    ca_context_play (ca_gtk_context_get (), 0,
+    printf("%d",ca_context_play (ca_gtk_context_get (), 0,
 			 CA_PROP_EVENT_ID, "button-pressed",
-			 CA_PROP_EVENT_DESCRIPTION, "haha description",NULL);
-    #if 0
-    /* Create a temporary, decorationless window */
-    GtkWidget* tempFlashWindow;
-    tempFlashWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_decorated(GTK_WINDOW(tempFlashWindow), FALSE);
-    gtk_window_fullscreen(GTK_WINDOW(tempFlashWindow));
-    
-    /* Modify the color of the window */
-    GdkColor color;
-    gdk_color_parse("light blue", &color);
-    gtk_widget_modify_bg(tempFlashWindow, GTK_STATE_NORMAL, &color);
-    
-    
-    gtk_widget_show(tempFlashWindow);
-    
-    /* This function takes the function endFlash and calls it every
-     * 1 second. When endFlash returns false, this loop ends.
-     * This serves to make the screen flash last only one second. */
-    g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)tempFlashWindow);
-    #endif
+			 CA_PROP_EVENT_DESCRIPTION, "haha description",
+             CA_PROP_VISUAL_EFFECT, "FLYING_DESCRIPTION_TEXT_ALERT",
+            NULL));
 }
 
 static gboolean delete_event( GtkWidget *widget,
