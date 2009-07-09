@@ -1,7 +1,8 @@
 /**
 * Project: VizAudio
-* File name: prop_parse.c
-* Description: This is simply a test program for visual effects
+* File name: color_flash.c
+* Description: This is simply a test program for visual effects. It displays
+* a fullscreen flashing color.
 * 
 *
 * LICENSE: This source file is subject to LGPL license
