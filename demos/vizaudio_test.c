@@ -1,5 +1,10 @@
 #include "vizaudio.h"
 
-int main() {
-    vizaudio_display(rand()/(((double)RAND_MAX + 1) / 4));
+int main(int   argc, char *argv[]) {
+    
+    gtk_init (&argc, &argv);
+
+    flash_text("V.v.V");
+
+    gtk_main();
 }
