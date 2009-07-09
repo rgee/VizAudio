@@ -65,6 +65,8 @@ int isVAEnabled(){
 
 //Quickly displays an image
 void flash_image(char* filename) {
+	gtk_init(NULL, NULL);
+	
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
@@ -78,6 +80,7 @@ void flash_image(char* filename) {
 	gtk_widget_show(window);        
 	
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+
 }
 
 /**
@@ -118,6 +121,7 @@ void song_popup(char* artist, char* title){
 
 //Quickly displays a color fullscreen
 void flash_color() {
+	gtk_init(NULL, NULL);
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
@@ -127,13 +131,11 @@ void flash_color() {
 	gdk_color_parse("light blue", &color);
 	gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color);
 	
-	
 	gtk_widget_show(window);
 	
-	/** This function takes the function endFlash and calls it with a time
-	 * interval defined by the first parameter 
-	 */
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+	gtk_main();
+
 }
 
 //Quickly zooms some text at you
@@ -166,6 +168,7 @@ void flash_text(char* text) {
  */
 gboolean endFlash(GtkWidget *window){
     gtk_object_destroy(GTK_OBJECT(window));
+	gtk_main_quit();
     return FALSE;
 }
 
