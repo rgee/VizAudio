@@ -25,15 +25,17 @@
 #include <cairo.h>
 #include <gconf/gconf-client.h>
 
+/* Visual Effects */
 void flash_color();
-void song_popup(char* artist, char* title);
 void flash_image(char* filename);
 void flash_text(char* text);
 
+/* Visual Effect Helpers */
 gboolean endFlash(GtkWidget *window);
 void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data);
 gboolean time_handler (GtkWidget *widget);
 gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_data);
 
+/* Utility Functions */
 int isVAEnabled();
 void initGConfFlag();
