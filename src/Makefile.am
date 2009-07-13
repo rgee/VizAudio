@@ -3,9 +3,10 @@ lib_LTLIBRARIES = \
 
 include_HEADERS = \
 	vizaudio.h
+	
 
 libvizaudio_la_SOURCES = \
-    vizaudio.c vizaudio.h
+    vizaudio.c vizaudio.h config.c
 libvizaudio_la_CFLAGS = \
 	$(GTK_CFLAGS) \
 	$(GCONF_CFLAGS)
