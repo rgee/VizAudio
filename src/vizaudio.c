@@ -64,7 +64,7 @@ int isVAEnabled(){
 }
 
 //Quickly displays an image
-void flash_image(char* filename) {
+void flash_image(char* filePath) {
 	gtk_init(NULL, NULL);
 	
 	GtkWidget *window;
@@ -73,7 +73,7 @@ void flash_image(char* filename) {
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 	
 	GtkWidget* image;
-	image = gtk_image_new_from_file(filename);
+	image = gtk_image_new_from_file(filePath);
 	gtk_container_add (GTK_CONTAINER (window), image);
 	
 	gtk_widget_show(image);    
@@ -142,6 +142,7 @@ void flash_color() {
 
 //Quickly zooms some text at you
 void flash_text(char* text) {
+	gtk_init(NULL, NULL);
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
@@ -162,6 +163,7 @@ void flash_text(char* text) {
 	
 	g_timeout_add(50, (GSourceFunc) time_handler, (gpointer) window);
 	gtk_widget_show(window);
+    gtk_main();
 }
 
 
