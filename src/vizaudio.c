@@ -120,7 +120,7 @@ void song_popup(char* artist, char* title){
 }
 
 //Quickly displays a color fullscreen
-void flash_color() {
+void flash_color(char* colorName) {
 	gtk_init(NULL, NULL);
 	
 	
@@ -130,7 +130,7 @@ void flash_color() {
 	gtk_window_fullscreen(GTK_WINDOW(window));
 
 	GdkColor color;
-	gdk_color_parse("light blue", &color);
+	gdk_color_parse(colorName, &color);
 	gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color);
 	
 	gtk_widget_show(window);
