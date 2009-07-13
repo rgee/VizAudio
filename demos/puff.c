@@ -1,6 +1,6 @@
 /**
 * Project: VizAudio
-* File name: prop_parse.c
+* File name: puff.c
 * Description: This is simply a test program for Cairo drawing. 
 *
 * LICENSE: This source file is subject to LGPL license

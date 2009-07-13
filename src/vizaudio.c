@@ -64,20 +64,24 @@ int isVAEnabled(){
 }
 
 //Quickly displays an image
-void flash_image(char* filename) {
+void flash_image(char* filePath) {
+	gtk_init(NULL, NULL);
+	
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 	
 	GtkWidget* image;
-	image = gtk_image_new_from_file(filename);
+	image = gtk_image_new_from_file(filePath);
 	gtk_container_add (GTK_CONTAINER (window), image);
 	
 	gtk_widget_show(image);    
 	gtk_widget_show(window);        
 	
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+    gtk_main();
+
 }
 
 /**
@@ -117,33 +121,45 @@ void song_popup(char* artist, char* title){
 }
 
 //Quickly displays a color fullscreen
-void flash_color() {
+void flash_color(char* colorName) {
+	gtk_init(NULL, NULL);
+	
+	
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
 	gtk_window_fullscreen(GTK_WINDOW(window));
 
 	GdkColor color;
-	gdk_color_parse("light blue", &color);
+	gdk_color_parse(colorName, &color);
 	gtk_widget_modify_bg(window, GTK_STATE_NORMAL, &color);
-	
 	
 	gtk_widget_show(window);
 	
-	/** This function takes the function endFlash and calls it with a time
-	 * interval defined by the first parameter 
-	 */
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+	gtk_main();
+
 }
 
-//Quickly zooms some text at you
+/* An effect that causes text to fly toward the screen
+ * 
+ * Parameters:
+ *  text - The text to be displayed
+ */
 void flash_text(char* text) {
+	gtk_init(NULL, NULL);
 	GtkWidget *window;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 	gtk_widget_set_app_paintable(window, TRUE);
-	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
+    
+    GdkScreen* screen = gdk_screen_get_default();
+	gtk_window_set_default_size (GTK_WINDOW (window),
+                                 gdk_screen_get_width(screen),
+                                 gdk_screen_get_height(screen));
+    
+    
 	
 	printf("flash_text: %s\n", text);
 
@@ -158,6 +174,9 @@ void flash_text(char* text) {
 	
 	g_timeout_add(50, (GSourceFunc) time_handler, (gpointer) window);
 	gtk_widget_show(window);
+    gtk_main();
+
+
 }
 
 
@@ -166,6 +185,7 @@ void flash_text(char* text) {
  */
 gboolean endFlash(GtkWidget *window){
     gtk_object_destroy(GTK_OBJECT(window));
+	gtk_main_quit();
     return FALSE;
 }
 
@@ -185,11 +205,10 @@ void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data
 gboolean time_handler (GtkWidget *widget){
   if (widget->window == NULL) return FALSE;
 
-  if (!timer) return FALSE;
+  if (!timer)    gtk_main_quit();
 
     // Send expose events
   gtk_widget_queue_draw(widget);
-
   return TRUE;
 }
 
@@ -203,7 +222,6 @@ gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_dat
     static gdouble alpha = 1.0;
     static gdouble size = 1;
     char* text = (char*) (gpointer) user_data;
-    printf("textDisplay: %s\n", text);
     cr = gdk_cairo_create(widget->window);
 
     cairo_set_source_rgba(cr, 1.0, 1.0, 1.0, 0.0); 

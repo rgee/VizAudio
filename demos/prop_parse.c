@@ -27,12 +27,12 @@
 #include <stdio.h>
 #include <string.h>
 
+/* Test callback function. */
 static void callback(ca_context *c, uint32_t id, int error, void *userdata) {
     fprintf(stderr, "callback called for id %u, error '%s', userdata=%p\n", id, ca_strerror(error), userdata);
 }
 
 int main(int argc, char *argv[]){
-
     ca_context *c;
     ca_proplist *p;
     int ret;
@@ -41,7 +41,6 @@ int main(int argc, char *argv[]){
 
     ret = ca_context_create(&c);
     fprintf(stderr, "create: %s\n", ca_strerror(ret));
-    
     ret = ca_context_change_props(c,
                                     CA_PROP_APPLICATION_NAME, "Example Application",
                                     CA_PROP_APPLICATION_ID,     "org.ryan.test",
@@ -60,12 +59,6 @@ int main(int argc, char *argv[]){
 	ret = ca_context_play_full(c, 1, p, callback, (void*) 0x4711);
     ca_proplist_destroy(p);
     fprintf(stderr, "play_full: %s\n", ca_strerror(ret));
-	
-    //out = (char*) ca_proplist_gets_unlocked(p, CA_PROP_EVENT_VISUAL_EFFECT);
-    
-    //printf("%s",out);
-    
-    //printf("\n");
     
     return 0;
 }
