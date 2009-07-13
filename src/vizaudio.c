@@ -80,6 +80,7 @@ void flash_image(char* filePath) {
 	gtk_widget_show(window);        
 	
 	g_timeout_add(250, (GSourceFunc)endFlash, (gpointer)window);
+    gtk_main();
 
 }
 
