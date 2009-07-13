@@ -141,7 +141,11 @@ void flash_color(char* colorName) {
 
 }
 
-//Quickly zooms some text at you
+/* An effect that causes text to fly toward the screen
+ * 
+ * Parameters:
+ *  text - The text to be displayed
+ */
 void flash_text(char* text) {
 	gtk_init(NULL, NULL);
 	GtkWidget *window;
@@ -149,7 +153,13 @@ void flash_text(char* text) {
 	gtk_window_set_title(GTK_WINDOW(window), "Audio Event Alert!");
 	gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER);
 	gtk_widget_set_app_paintable(window, TRUE);
-	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
+    
+    GdkScreen* screen = gdk_screen_get_default();
+	gtk_window_set_default_size (GTK_WINDOW (window),
+                                 gdk_screen_get_width(screen),
+                                 gdk_screen_get_height(screen));
+    
+    
 	
 	printf("flash_text: %s\n", text);
 
