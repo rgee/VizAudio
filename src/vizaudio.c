@@ -165,6 +165,8 @@ void flash_text(char* text) {
 	g_timeout_add(50, (GSourceFunc) time_handler, (gpointer) window);
 	gtk_widget_show(window);
     gtk_main();
+
+
 }
 
 
@@ -193,11 +195,10 @@ void screen_changed(GtkWidget *widget, GdkScreen *old_screen, gpointer user_data
 gboolean time_handler (GtkWidget *widget){
   if (widget->window == NULL) return FALSE;
 
-  if (!timer) return FALSE;
+  if (!timer)    gtk_main_quit();
 
     // Send expose events
   gtk_widget_queue_draw(widget);
-
   return TRUE;
 }
 
@@ -211,7 +212,6 @@ gboolean textDisplay(GtkWidget *widget, GdkEventExpose *event, gpointer user_dat
     static gdouble alpha = 1.0;
     static gdouble size = 1;
     char* text = (char*) (gpointer) user_data;
-    printf("textDisplay: %s\n", text);
     cr = gdk_cairo_create(widget->window);
 
     cairo_set_source_rgba(cr, 1.0, 1.0, 1.0, 0.0); 
