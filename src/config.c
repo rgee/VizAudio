@@ -30,15 +30,13 @@ gchar* key = "/apps/vizaudio/preferences/enabled";
 
 static gboolean toggleCb(GtkWidget* widget, GdkEvent* event, gpointer data)
 {
-    printf("Making the choice");
+    /* Link the toggle button to the Gconf variable */
     if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget)))
     {
-        printf("Disabling VizAudio");
         gconf_client_set_int(client, "/apps/vizaudio/preferences/enabled", 1, NULL);
     }
     else
     {
-        printf("Enabling VizAudio");
         gconf_client_set_int(client, "/apps/vizaudio/preferences/enabled", 0, NULL);
     }
     return FALSE;
@@ -69,14 +67,13 @@ int main(int argc, char *argv[])
     gtk_button_set_use_stock(GTK_BUTTON(quitButton), TRUE);
     
     vBox = gtk_vbox_new(TRUE, 8);
-    
     gtk_box_pack_start(GTK_BOX(vBox), toggleButton, FALSE, FALSE, 5);
     gtk_box_pack_start(GTK_BOX(vBox), quitButton, FALSE, FALSE, 0);
     
 
-
     assert(gconf_client_dir_exists(client, dir, NULL));
 
+    /* Set the inital toggle button state */
     if(gconf_client_get_int(client, "/apps/vizaudio/preferences/enabled", NULL))
     {
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(toggleButton), TRUE);
@@ -86,14 +83,16 @@ int main(int argc, char *argv[])
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(toggleButton), FALSE);
     }
 
+    /* Link up our callbacks */
     g_signal_connect(G_OBJECT(toggleButton), "toggled",
                     G_CALLBACK(toggleCb), NULL);
-    
+                    
     g_signal_connect(G_OBJECT(window), "delete_event",
                     G_CALLBACK(delete_event), NULL);
-    
+                    
     g_signal_connect_swapped(G_OBJECT(quitButton), "clicked",
                             G_CALLBACK(gtk_main_quit), G_OBJECT(window));
+    
     
     gtk_container_add(GTK_CONTAINER(window), vBox);
     
