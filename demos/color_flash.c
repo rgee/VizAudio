@@ -32,19 +32,50 @@ static gboolean endFlash(GtkWidget *window){
 
 /* This is a callback function. The data arguments are ignored
  * in this example. More on callbacks below. */
-static void hello( GtkWidget *widget,
+static void color( GtkWidget *widget,
                    gpointer   data )
 {
     
 /* Use libcanbera to play an event sound and specify a visual effect to go along with it.*/
-    g_print ("Hello World\n");
+    g_print ("Flash a color!\n");
     printf("%d",ca_context_play (ca_gtk_context_get (), 0,
 			 CA_PROP_EVENT_ID, "button-pressed",
-			 CA_PROP_EVENT_DESCRIPTION, "haha description",
+			 CA_PROP_EVENT_DESCRIPTION, "colorcolorcolor",
              CA_PROP_VISUAL_EFFECT, "COLOR_ALERT",
-             CA_PROP_COLOR, "green",
+             CA_PROP_COLOR, "blue",
+            NULL));
+}
+
+/* This is a callback function. The data arguments are ignored
+ * in this example. More on callbacks below. */
+static void text( GtkWidget *widget,
+                   gpointer   data )
+{
+    
+/* Use libcanbera to play an event sound and specify a visual effect to go along with it.*/
+    g_print ("Display some text!\n");
+    printf("%d",ca_context_play (ca_gtk_context_get (), 0,
+			 CA_PROP_EVENT_ID, "button-pressed",
+			 CA_PROP_EVENT_DESCRIPTION, "This text will alert you!",
+             CA_PROP_VISUAL_EFFECT, "FLYING_DESCRIPTION_TEXT_ALERT",
             NULL));
 
+}
+
+/* This is a callback function. The data arguments are ignored
+ * in this example. More on callbacks below. */
+static void image( GtkWidget *widget,
+                   gpointer   data )
+{
+    
+/* Use libcanbera to play an event sound and specify a visual effect to go along with it.*/
+    g_print ("It's a seaslug!\n");
+    printf("%d",ca_context_play (ca_gtk_context_get (), 0,
+			 CA_PROP_EVENT_ID, "button-pressed",
+			 CA_PROP_EVENT_DESCRIPTION, "Hi seaslug",
+             CA_PROP_VISUAL_EFFECT, "IMAGE_ALERT",
+             CA_PROP_MEDIA_IMAGE_PATH, "/usr/local/seaslug",
+            NULL));
 }
 
 static gboolean delete_event( GtkWidget *widget,
@@ -77,7 +108,10 @@ int main( int   argc,
 {
     /* GtkWidget is the storage type for widgets */
     GtkWidget *window;
-    GtkWidget *button;
+    GtkWidget *buttoncolor;
+    GtkWidget *buttontext;
+    GtkWidget *buttonimage;
+    GtkWidget *hbox;
     
     /* This is called in all GTK applications. Arguments are parsed
      * from the command line and are returned to the application. */
@@ -104,26 +138,47 @@ int main( int   argc,
     gtk_container_set_border_width (GTK_CONTAINER (window), 10);
     
     /* Creates a new button with the label "Hello World". */
-    button = gtk_button_new_with_label ("Hello World");
+    buttoncolor = gtk_button_new_with_label ("Flash color");
+    buttontext = gtk_button_new_with_label ("Flash text");
+    buttonimage = gtk_button_new_with_label ("Flash image");
     
     /* When the button receives the "clicked" signal, it will call the
      * function hello() passing it NULL as its argument.  The hello()
      * function is defined above. */
-    g_signal_connect (G_OBJECT (button), "clicked",
-		      G_CALLBACK (hello), NULL);
+    g_signal_connect (G_OBJECT (buttoncolor), "clicked",
+		      G_CALLBACK (color), NULL);
+    g_signal_connect (G_OBJECT (buttontext), "clicked",
+		      G_CALLBACK (text), NULL);
+    g_signal_connect (G_OBJECT (buttonimage), "clicked",
+		      G_CALLBACK (image), NULL);
     
     /* This will cause the window to be destroyed by calling
      * gtk_widget_destroy(window) when "clicked".  Again, the destroy
      * signal could come from here, or the window manager. */
+    
+
     /*g_signal_connect_swapped (G_OBJECT (button), "clicked",
 			      G_CALLBACK (gtk_widget_destroy),
-                              G_OBJECT (window));*/
+                              G_OBJECT (window));*/  
+    hbox = gtk_hbox_new (FALSE, 0);
     
+    /* Pack the button into the quitbox.
+     * The last 3 arguments to gtk_box_pack_start are:
+     * expand, fill, padding. */
+    gtk_box_pack_start (GTK_BOX (hbox), buttoncolor, TRUE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), buttontext, TRUE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), buttonimage, TRUE, FALSE, 0);
+
+
     /* This packs the button into the window (a gtk container). */
-    gtk_container_add (GTK_CONTAINER (window), button);
+    gtk_container_add (GTK_CONTAINER (window), hbox);
+
     
     /* The final step is to display this newly created widget. */
-    gtk_widget_show (button);
+    gtk_widget_show (buttoncolor);
+    gtk_widget_show (buttontext);
+    gtk_widget_show (buttonimage);
+    gtk_widget_show (hbox);
     
     /* and the window */
     gtk_widget_show (window);
