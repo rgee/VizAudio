@@ -32,10 +32,8 @@ static void check( GtkWidget *widget,
     
 /* Use libcanbera to play an event sound and specify a visual effect to go along with it.*/
     printf("%d",ca_context_play (ca_gtk_context_get (), 0,
-			 CA_PROP_EVENT_ID, "button-pressed",
+			 CA_PROP_EVENT_ID, "dialog-information",
 			 CA_PROP_EVENT_DESCRIPTION, "Hi seaslug",
-             CA_PROP_VISUAL_EFFECT, "IMAGE_ALERT",
-             CA_PROP_MEDIA_IMAGE_PATH, "/home/rfoeckin/apps/images/checkmark.png",
             NULL));
 }
 
@@ -49,10 +47,8 @@ static gboolean destroy_error_window(GtkWidget *window){
 static void error(GtkWidget *widget, gpointer window){
   /* Play an alert sound/visual event */
   printf("%d",ca_context_play (ca_gtk_context_get (), 0,
-			 CA_PROP_EVENT_ID, "button-pressed",
+			 CA_PROP_EVENT_ID, "dialog-error",
 			 CA_PROP_EVENT_DESCRIPTION, "colorcolorcolor",
-             CA_PROP_VISUAL_EFFECT, "COLOR_ALERT",
-             CA_PROP_COLOR, "red",
             NULL));
   /* Set up and display an error dialog */
   GtkWidget *dialog;
