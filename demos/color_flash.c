@@ -41,8 +41,10 @@ static void hello( GtkWidget *widget,
     printf("%d",ca_context_play (ca_gtk_context_get (), 0,
 			 CA_PROP_EVENT_ID, "button-pressed",
 			 CA_PROP_EVENT_DESCRIPTION, "haha description",
-             CA_PROP_VISUAL_EFFECT, "FLYING_DESCRIPTION_TEXT_ALERT",
+             CA_PROP_VISUAL_EFFECT, "COLOR_ALERT",
+             CA_PROP_COLOR, "green",
             NULL));
+
 }
 
 static gboolean delete_event( GtkWidget *widget,
