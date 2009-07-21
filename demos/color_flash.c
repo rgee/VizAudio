@@ -74,10 +74,37 @@ static void image( GtkWidget *widget,
 			 CA_PROP_EVENT_ID, "button-pressed",
 			 CA_PROP_EVENT_DESCRIPTION, "Hi seaslug",
              CA_PROP_VISUAL_EFFECT, "IMAGE_ALERT",
-             CA_PROP_MEDIA_IMAGE_PATH, "/usr/local/seaslug",
+             CA_PROP_MEDIA_IMAGE_PATH, "/home/rfoeckin/apps/images/seaslug.GIF",
             NULL));
 }
 
+/* Destroys the window. Wrapped to facilitate timing from
+ * g_timeout_add() */
+static gboolean destroy_error_window(GtkWidget *window){
+    gtk_object_destroy(GTK_OBJECT(window));
+    return FALSE;
+}
+
+static void error(GtkWidget *widget, gpointer window){
+  /* Play an alert sound/visual event */
+  printf("%d",ca_context_play (ca_gtk_context_get (), 0,
+			 CA_PROP_EVENT_ID, "button-pressed",
+			 CA_PROP_EVENT_DESCRIPTION, "colorcolorcolor",
+             CA_PROP_VISUAL_EFFECT, "COLOR_ALERT",
+             CA_PROP_COLOR, "red",
+            NULL));
+  /* Set up and display an error dialog */
+  GtkWidget *dialog;
+  dialog = gtk_message_dialog_new(window,
+            GTK_DIALOG_DESTROY_WITH_PARENT,
+            GTK_MESSAGE_ERROR,
+            GTK_BUTTONS_OK,
+           "An error has occurred.  Please do not be alarmed.");
+  gtk_window_set_title(GTK_WINDOW(dialog), "Error");
+  gtk_dialog_run(GTK_DIALOG(dialog));
+  gtk_widget_destroy(dialog);
+  
+}
 static gboolean delete_event( GtkWidget *widget,
                               GdkEvent  *event,
                               gpointer   data )
@@ -111,6 +138,7 @@ int main( int   argc,
     GtkWidget *buttoncolor;
     GtkWidget *buttontext;
     GtkWidget *buttonimage;
+    GtkWidget *buttonerror;
     GtkWidget *hbox;
     
     /* This is called in all GTK applications. Arguments are parsed
@@ -141,6 +169,7 @@ int main( int   argc,
     buttoncolor = gtk_button_new_with_label ("Flash color");
     buttontext = gtk_button_new_with_label ("Flash text");
     buttonimage = gtk_button_new_with_label ("Flash image");
+    buttonerror = gtk_button_new_with_label("Error");
     
     /* When the button receives the "clicked" signal, it will call the
      * function hello() passing it NULL as its argument.  The hello()
@@ -151,6 +180,7 @@ int main( int   argc,
 		      G_CALLBACK (text), NULL);
     g_signal_connect (G_OBJECT (buttonimage), "clicked",
 		      G_CALLBACK (image), NULL);
+    g_signal_connect(G_OBJECT(buttonerror), "clicked", G_CALLBACK (error), NULL);
     
     /* This will cause the window to be destroyed by calling
      * gtk_widget_destroy(window) when "clicked".  Again, the destroy
@@ -168,6 +198,7 @@ int main( int   argc,
     gtk_box_pack_start (GTK_BOX (hbox), buttoncolor, TRUE, FALSE, 0);
     gtk_box_pack_start (GTK_BOX (hbox), buttontext, TRUE, FALSE, 0);
     gtk_box_pack_start (GTK_BOX (hbox), buttonimage, TRUE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX(hbox), buttonerror, TRUE, FALSE, 0);
 
 
     /* This packs the button into the window (a gtk container). */
@@ -178,6 +209,7 @@ int main( int   argc,
     gtk_widget_show (buttoncolor);
     gtk_widget_show (buttontext);
     gtk_widget_show (buttonimage);
+    gtk_widget_show (buttonerror);
     gtk_widget_show (hbox);
     
     /* and the window */
